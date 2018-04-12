@@ -1,18 +1,63 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {HttpClientModule} from '@angular/common/http';
 
+import {AppComponent} from './app.component';
+import {CandidatesService} from "./shared/candidates/candidates.service";
+import {CandidatesListComponent} from './candidates-list/candidates-list.component';
+import {
+  MatButtonModule,
+  MatCardModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
+  MatTableModule,
+  MatToolbarModule
+} from "@angular/material";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {CandidateEditComponent} from './candidate-edit/candidate-edit.component';
+import {RouterModule, Routes} from '@angular/router';
+import {FormsModule} from "@angular/forms";
 
-import { AppComponent } from './app.component';
-
+const appRoutes: Routes = [
+  { path: '', redirectTo: '/candidate-list', pathMatch: 'full' },
+  {
+    path: 'candidate-list',
+    component: CandidatesListComponent
+  },
+  {
+    path: 'candidate-add',
+    component: CandidateEditComponent
+  },
+  {
+    path: 'candidate-edit/:id',
+    component: CandidateEditComponent
+  }
+];
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CandidatesListComponent,
+    CandidateEditComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatInputModule,
+    MatCardModule,
+    MatListModule,
+    MatToolbarModule,
+    MatTableModule,
+    MatIconModule,
+    RouterModule,
+    FormsModule,
+    RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [CandidatesService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
