@@ -3,6 +3,8 @@
 }
 
 .add-button {
+  margin-top: 1px;
+  margin-bottom: 5px;
   height: 50px;
   display: flex;
   justify-content: center;

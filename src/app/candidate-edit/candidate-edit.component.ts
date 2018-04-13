@@ -3,6 +3,7 @@ import {Subscription} from 'rxjs/Subscription';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CandidatesService} from '../shared/candidates/candidates.service';
 import {NgForm} from '@angular/forms';
+import {Inject} from "@angular/compiler/src/core";
 
 @Component({
   selector: 'app-candidate-edit',
@@ -55,5 +56,11 @@ export class CandidateEditComponent implements OnInit, OnDestroy {
     this.candidateService.remove(href).subscribe(result => {
       this.gotoList();
     }, error => console.error(error));
+  }
+
+
+  onBeforeUpload($event) {
+    console.info($event);
+    console.info($event);
   }
 }
