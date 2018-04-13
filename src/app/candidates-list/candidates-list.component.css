@@ -15,3 +15,8 @@
   max-height: inherit;
   min-width: 300px;
 }
+
+.mat-table {
+  overflow: auto;
+  flex: 1;
+}

@@ -1,5 +1,5 @@
 .all-wrap {
-  min-height: 100vh;
+  flex: 1;
 }
 
 .page-wrap {
@@ -24,7 +24,7 @@ main {
 }
 
 .footer {
-  height: 30px;
+  height: 5%;
 }
 
 .footer-text {

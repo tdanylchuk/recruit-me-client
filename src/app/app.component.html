@@ -1,31 +1,30 @@
-<mat-sidenav-container class="all-wrap" fullscreen>
-  <mat-sidenav #sidenav>
-    <mat-list>
-      <mat-list-item [routerLink]="['/']"> Home</mat-list-item>
-      <mat-list-item [routerLink]="['/candidate-list']"> Candidates</mat-list-item>
-    </mat-list>
-  </mat-sidenav>
-
-  <div class="page-wrap">
-    <header role="banner">
-      <mat-toolbar color="primary">
-        <button
-          type="button"
-          mat-icon-button
-          (click)="sidenav.open()"
-          title="Open sidenav">
-          <mat-icon>menu</mat-icon>
-        </button>
-        Welcome to RecruitMe
-      </mat-toolbar>
-    </header>
-    <main class="content">
+<div class="page-wrap">
+  <header role="banner">
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        mat-icon-button
+        (click)="sidenav.open()"
+        title="Open sidenav">
+        <mat-icon>menu</mat-icon>
+      </button>
+      Welcome to RecruitMe
+    </mat-toolbar>
+  </header>
+  <main class="content">
+    <mat-sidenav-container class="all-wrap">
+      <mat-sidenav #sidenav mode="push">
+        <mat-list (click)="sidenav.close()">
+          <mat-list-item [routerLink]="['/']"> Home</mat-list-item>
+          <mat-list-item [routerLink]="['/candidate-list']"> Candidates</mat-list-item>
+        </mat-list>
+      </mat-sidenav>
       <router-outlet></router-outlet>
-    </main>
-    <footer>
-      <mat-toolbar color="primary" class="footer">
-        <span class="footer-text">Taras Danylchuk copyright. 2018. All rights reserved.</span>
-      </mat-toolbar>
-    </footer>
-  </div>
-</mat-sidenav-container>
+    </mat-sidenav-container>
+  </main>
+  <footer>
+    <mat-toolbar color="primary" class="footer">
+      <span class="footer-text">Taras Danylchuk copyright. 2018. All rights reserved.</span>
+    </mat-toolbar>
+  </footer>
+</div>
