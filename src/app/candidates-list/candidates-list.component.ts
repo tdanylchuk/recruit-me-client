@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CandidatesService} from '../shared/candidates/candidates.service';
 import {MatTableDataSource} from "@angular/material";
 
@@ -9,7 +9,7 @@ import {MatTableDataSource} from "@angular/material";
 })
 export class CandidatesListComponent implements OnInit {
 
-  candidatesDS =  new MatTableDataSource();
+  candidatesDS = new MatTableDataSource();
 
   columnsToDisplay: Array<any> = ["id", "name", "email", "position", "operations"];
 

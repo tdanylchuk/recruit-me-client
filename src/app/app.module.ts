@@ -11,6 +11,7 @@ import {
   MatIconModule,
   MatInputModule,
   MatListModule,
+  MatSidenavModule,
   MatTableModule,
   MatToolbarModule
 } from "@angular/material";
@@ -20,7 +21,11 @@ import {RouterModule, Routes} from '@angular/router';
 import {FormsModule} from "@angular/forms";
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: '/candidate-list', pathMatch: 'full' },
+  // {
+  //   path: '',
+  //   redirectTo: '/candidate-list',
+  //   pathMatch: 'full'
+  // },
   {
     path: 'candidate-list',
     component: CandidatesListComponent
@@ -53,6 +58,7 @@ const appRoutes: Routes = [
     MatTableModule,
     MatIconModule,
     RouterModule,
+    MatSidenavModule,
     FormsModule,
     RouterModule.forRoot(appRoutes)
   ],

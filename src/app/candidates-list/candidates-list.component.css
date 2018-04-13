@@ -1,15 +1,17 @@
-.add-button {
-  margin: 5px;
-}
-
 .delete-button {
   margin: 5px;
 }
 
+.add-button {
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
 
 .table-container {
   display: flex;
   flex-direction: column;
-  max-height: 900px;
+  max-height: inherit;
   min-width: 300px;
 }
