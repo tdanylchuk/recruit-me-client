@@ -1,4 +1,4 @@
 export enum Constants {
 
-  restEndpointUrl = "localhost:8080"
+  restEndpointUrl = "192.168.2.216:8080"
 }

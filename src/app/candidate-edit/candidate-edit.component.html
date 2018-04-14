@@ -4,7 +4,6 @@
       <mat-card-title><h2>{{candidate.name ? 'Edit' : 'Add'}} Candidate</h2></mat-card-title>
     </mat-card-header>
 
-
     <mat-card-content>
       <mat-card-subtitle><h4>Fill candidate data:</h4></mat-card-subtitle>
       <input type="hidden" name="href" [(ngModel)]="candidate.href">
@@ -15,7 +14,8 @@
 
       <mat-form-field>
         <input matInput placeholder="Email" [(ngModel)]="candidate.email"
-               required name="email" #email>
+               required email name="email" #email>
+        <mat-error *ngIf="!email.valid">Not a valid email</mat-error>
       </mat-form-field>
 
       <mat-form-field>
@@ -40,7 +40,7 @@
 
     <mat-card-actions>
       <button mat-raised-button color="primary" type="submit"
-              [disabled]="!candidateForm.form.valid">Save
+              [disabled]="!candidateForm.valid">Save
       </button>
       <button mat-raised-button color="secondary" mat-button routerLink="/candidate-list"
               type="button">Cancel
