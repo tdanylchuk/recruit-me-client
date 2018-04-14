@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {CandidatesService} from '../shared/candidates/candidates.service';
 import {MatTableDataSource} from "@angular/material";
 import {AttachmentService} from "../shared/attachments/attachment.service";
-import * as FileSaver from "file-saver";
 
 @Component({
   selector: 'app-candidates-list',
@@ -13,7 +12,7 @@ export class CandidatesListComponent implements OnInit {
 
   candidatesDS = new MatTableDataSource();
 
-  columnsToDisplay: Array<any> = ["id", "name", "email", "position", "attachments", "operations"];
+  columnsToDisplay: Array<any> = ["id", "firstName", "lastName", "email", "position", "attachments", "operations"];
 
   constructor(private candidatesService: CandidatesService,
               private attachmentService: AttachmentService) {

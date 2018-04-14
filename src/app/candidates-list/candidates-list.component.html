@@ -3,27 +3,31 @@
 
     <ng-container matColumnDef="id">
       <mat-header-cell class="id-column" *matHeaderCellDef>ID</mat-header-cell>
-      <mat-cell class="id-column" *matCellDef="let element">{{element.id}}</mat-cell>
+      <mat-cell class="id-column" *matCellDef="let candidate">{{candidate.id}}</mat-cell>
     </ng-container>
-    <ng-container matColumnDef="name">
-      <mat-header-cell *matHeaderCellDef>NAME</mat-header-cell>
-      <mat-cell *matCellDef="let element">{{element.name}}</mat-cell>
+    <ng-container matColumnDef="firstName">
+      <mat-header-cell *matHeaderCellDef>FIRST NAME</mat-header-cell>
+      <mat-cell *matCellDef="let candidate">{{candidate.firstName}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="lastName">
+      <mat-header-cell *matHeaderCellDef>LAST NAME</mat-header-cell>
+      <mat-cell *matCellDef="let candidate">{{candidate.lastName}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="email">
       <mat-header-cell *matHeaderCellDef>EMAIL</mat-header-cell>
-      <mat-cell *matCellDef="let element">{{element.email}}</mat-cell>
+      <mat-cell *matCellDef="let candidate">{{candidate.email}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="position">
       <mat-header-cell *matHeaderCellDef>POSITION</mat-header-cell>
-      <mat-cell *matCellDef="let element">{{element.position}}</mat-cell>
+      <mat-cell *matCellDef="let candidate">{{candidate.position}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="attachments">
       <mat-header-cell *matHeaderCellDef>ATTACHMENTS</mat-header-cell>
-      <mat-cell *matCellDef="let element">
+      <mat-cell *matCellDef="let candidate">
         <button mat-mini-fab
                 class="option-button"
                 color="secondary"
-                *ngFor="let attachment of element.attachments"
+                *ngFor="let attachment of candidate.attachments"
                 (click)="$event.stopPropagation(); downloadFile(attachment.id)"
                 [matTooltip]="attachment.name">
           <mat-icon>attach_file</mat-icon>
