@@ -26,3 +26,13 @@
 .id-column {
   flex: 0 0 5%;
 }
+
+.filter-header {
+  min-height: 44px;
+  padding: 2px 24px 0;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+

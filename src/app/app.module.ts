@@ -9,6 +9,7 @@ import {CandidatesListComponent} from './candidates-list/candidates-list.compone
 import {
   MatButtonModule,
   MatCardModule,
+  MatGridListModule,
   MatIconModule,
   MatInputModule,
   MatListModule,
@@ -65,6 +66,7 @@ const appRoutes: Routes = [
     FormsModule,
     FileUploadModule,
     MatTooltipModule,
+    MatGridListModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [CandidatesService, AttachmentService],

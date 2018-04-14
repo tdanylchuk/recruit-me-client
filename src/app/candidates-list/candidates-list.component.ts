@@ -36,4 +36,9 @@ export class CandidatesListComponent implements OnInit {
       this.candidatesDS._updateChangeSubscription()
     }, error => console.error(error));
   }
+
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim().toLowerCase();
+    this.candidatesDS.filter = filterValue;
+  }
 }

@@ -2,3 +2,17 @@
   padding: .35em;
   border-bottom: 0 none;
 }
+
+mat-list-item {
+  padding: 15px;
+}
+
+.mat-grid-content {
+  position: absolute;
+  left: 10px;
+  top: 60px;
+}
+
+button {
+  margin: 5px;
+}

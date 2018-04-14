@@ -1,4 +1,10 @@
 <div class="table-container mat-elevation-z8">
+  <div class="filter-header">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+  </div>
+
   <mat-table #table [dataSource]="candidatesDS">
 
     <ng-container matColumnDef="id">
