@@ -30,7 +30,7 @@
       <p-fileUpload
         [showUploadButton]="true"
         name="files"
-        url="http://localhost:8080/upload"
+        [url]="attachmentService.getUploadUrl()"
         multiple="true"
         maxFileSize="1000000"
         (onBeforeUpload)="onBeforeUpload($event)"

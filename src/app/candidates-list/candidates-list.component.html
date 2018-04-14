@@ -2,8 +2,8 @@
   <mat-table #table [dataSource]="candidatesDS">
 
     <ng-container matColumnDef="id">
-      <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
-      <mat-cell *matCellDef="let element">{{element.id}}</mat-cell>
+      <mat-header-cell class="id-column" *matHeaderCellDef>ID</mat-header-cell>
+      <mat-cell class="id-column" *matCellDef="let element">{{element.id}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="name">
       <mat-header-cell *matHeaderCellDef>NAME</mat-header-cell>
@@ -17,15 +17,26 @@
       <mat-header-cell *matHeaderCellDef>POSITION</mat-header-cell>
       <mat-cell *matCellDef="let element">{{element.position}}</mat-cell>
     </ng-container>
+    <ng-container matColumnDef="attachments">
+      <mat-header-cell *matHeaderCellDef>ATTACHMENTS</mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <button mat-mini-fab
+                class="option-button"
+                color="secondary"
+                *ngFor="let attachment of element.attachments"
+                (click)="$event.stopPropagation(); downloadFile(attachment.id)"
+                [matTooltip]="attachment.name">
+          <mat-icon>attach_file</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
 
     <ng-container matColumnDef="operations">
       <mat-header-cell align="center" *matHeaderCellDef></mat-header-cell>
       <mat-cell align="center" *matCellDef="let candidate" (click)="$event.stopPropagation()">
-
-        <button class="delete-button" mat-mini-fab color="warn" (click)="deleteUser(candidate)">
-          <mat-icon>delete_forever</mat-icon>
+        <button class="option-button" mat-mini-fab color="warn" (click)="deleteUser(candidate)">
+          <mat-icon>delete</mat-icon>
         </button>
-
       </mat-cell>
     </ng-container>
 

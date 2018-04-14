@@ -1,5 +1,5 @@
-.delete-button {
-  margin: 5px;
+.option-button {
+  margin: 4px;
 }
 
 .add-button {
@@ -21,4 +21,8 @@
 .mat-table {
   overflow: auto;
   flex: 1;
+}
+
+.id-column {
+  flex: 0 0 5%;
 }

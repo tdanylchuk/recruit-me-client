@@ -14,12 +14,14 @@ import {
   MatListModule,
   MatSidenavModule,
   MatTableModule,
-  MatToolbarModule
+  MatToolbarModule,
+  MatTooltipModule
 } from "@angular/material";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {CandidateEditComponent} from './candidate-edit/candidate-edit.component';
 import {RouterModule, Routes} from '@angular/router';
 import {FormsModule} from "@angular/forms";
+import {AttachmentService} from "./shared/attachments/attachment.service";
 
 const appRoutes: Routes = [
   // {
@@ -62,9 +64,10 @@ const appRoutes: Routes = [
     MatSidenavModule,
     FormsModule,
     FileUploadModule,
+    MatTooltipModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [CandidatesService],
+  providers: [CandidatesService, AttachmentService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

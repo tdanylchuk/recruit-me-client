@@ -3,7 +3,7 @@ import {Subscription} from 'rxjs/Subscription';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CandidatesService} from '../shared/candidates/candidates.service';
 import {NgForm} from '@angular/forms';
-import {Inject} from "@angular/compiler/src/core";
+import {AttachmentService} from "../shared/attachments/attachment.service";
 
 @Component({
   selector: 'app-candidate-edit',
@@ -18,7 +18,8 @@ export class CandidateEditComponent implements OnInit, OnDestroy {
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private candidateService: CandidatesService) {
+              private candidateService: CandidatesService,
+              public attachmentService: AttachmentService) {
   }
 
   ngOnInit() {
@@ -58,9 +59,7 @@ export class CandidateEditComponent implements OnInit, OnDestroy {
     }, error => console.error(error));
   }
 
-
   onBeforeUpload($event) {
-    console.info($event);
     console.info($event);
   }
 }
