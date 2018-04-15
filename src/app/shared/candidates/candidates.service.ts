@@ -34,4 +34,9 @@ export class CandidatesService {
     return this.http.delete(href);
   }
 
+  addAttachments(candidateId, attachmentIds: any): Observable<any> {
+    return this.http.post(`${this.CANDIDATES_API}/${candidateId}/attachments`, attachmentIds,
+      {headers: {'Content-Type': 'application/json'}});
+  }
+
 }

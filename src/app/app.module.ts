@@ -1,7 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
-import {FileUploadModule} from 'primeng/fileupload';
 
 import {AppComponent} from './app.component';
 import {CandidatesService} from "./shared/candidates/candidates.service";
@@ -13,7 +12,7 @@ import {
   MatIconModule,
   MatInputModule,
   MatListModule,
-  MatSidenavModule,
+  MatSidenavModule, MatSnackBarModule,
   MatTableModule,
   MatToolbarModule,
   MatTooltipModule
@@ -64,9 +63,9 @@ const appRoutes: Routes = [
     RouterModule,
     MatSidenavModule,
     FormsModule,
-    FileUploadModule,
     MatTooltipModule,
     MatGridListModule,
+    MatSnackBarModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [CandidatesService, AttachmentService],

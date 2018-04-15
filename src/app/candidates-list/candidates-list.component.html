@@ -36,7 +36,7 @@
                 *ngFor="let attachment of candidate.attachments"
                 (click)="$event.stopPropagation(); downloadFile(attachment.id)"
                 [matTooltip]="attachment.name">
-          <mat-icon>attach_file</mat-icon>
+          <mat-icon>get_app</mat-icon>
         </button>
       </mat-cell>
     </ng-container>
