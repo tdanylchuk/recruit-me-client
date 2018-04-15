@@ -16,10 +16,10 @@ main {
   display: flex;
   flex-direction: column;
 
-/*> *:not(router-outlet) {*/
+  /*> *:not(router-outlet) {*/
   /*flex: 1;*/
   /*display: block;*/
-/*}*/
+  /*}*/
 
 }
 
@@ -39,4 +39,12 @@ mat-list-item:hover {
   flex: 1 1 auto;
   text-align: right;
   font-size: small;
+}
+
+.menu-button {
+  padding: 0 30px;
+}
+
+.toolbar-spacer {
+  flex: 1 1 auto;
 }

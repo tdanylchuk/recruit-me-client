@@ -12,7 +12,9 @@ import {
   MatIconModule,
   MatInputModule,
   MatListModule,
-  MatSidenavModule, MatSnackBarModule,
+  MatMenuModule,
+  MatSidenavModule,
+  MatSnackBarModule,
   MatTableModule,
   MatToolbarModule,
   MatTooltipModule
@@ -66,6 +68,7 @@ const appRoutes: Routes = [
     MatTooltipModule,
     MatGridListModule,
     MatSnackBarModule,
+    MatMenuModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [CandidatesService, AttachmentService],
