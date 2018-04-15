@@ -53,6 +53,7 @@ export class CandidateEditComponent implements OnInit, OnDestroy {
   save(form: NgForm) {
     this.candidateService.save(form).subscribe(result => {
       this.gotoList();
+      this.showSnackBar(`Candidate has been saved.`, 1000);
     }, error => console.error(error));
   }
 
@@ -108,9 +109,9 @@ export class CandidateEditComponent implements OnInit, OnDestroy {
     xhr.send(formData);
   }
 
-  showSnackBar(message: string) {
+  showSnackBar(message: string, timeout = 2000) {
     this.snackBar.open(message, null, {
-      duration: 2000,
+      duration: timeout,
     });
   }
 

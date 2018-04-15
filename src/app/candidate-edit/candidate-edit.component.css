@@ -18,11 +18,13 @@ button {
 }
 
 .icon-column {
-  flex: 0 0 70px;
+  flex: 1;
+  max-width: 65px;
 }
 
 .upload-date-column {
-  flex: 0 0 100px;
+  flex: 1;
+  max-width: 110px
 }
 
 .attachment-table {
@@ -51,4 +53,14 @@ button {
 .content-grid {
   margin-left: 10px;
   margin-right: 10px;
+}
+
+mat-grid-tile {
+  background: white;
+  box-shadow: 5px 5px 20px grey;
+}
+
+.action-buttons {
+  margin-left: 10px;
+  margin-top: 10px;
 }

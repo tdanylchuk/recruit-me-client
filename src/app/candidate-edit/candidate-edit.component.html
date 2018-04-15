@@ -4,7 +4,7 @@
     <h2 mat-subheader>{{candidate.id ? 'Edit' : 'Add'}} Candidate</h2>
 
     <mat-grid-list cols="{{isMobile() ? 1 : 2}}" rowHeight="450px" gutterSize="10px" class="content-grid">
-      <mat-grid-tile [style.background]="'white'">
+      <mat-grid-tile>
         <mat-grid-tile-header> Fill candidate data:</mat-grid-tile-header>
 
         <mat-list class="mat-grid-content">
@@ -41,7 +41,7 @@
         </mat-list>
       </mat-grid-tile>
 
-      <mat-grid-tile [style.background]="'white'">
+      <mat-grid-tile *ngIf="candidate.id != null">
         <mat-grid-tile-header> Manage attachments:</mat-grid-tile-header>
 
         <mat-table #table [dataSource]="attachmentsDS" class="attachment-table">
@@ -92,12 +92,14 @@
 
     </mat-grid-list>
 
-    <button mat-raised-button color="primary" type="submit"
-            [disabled]="!candidateForm.valid">Save
-    </button>
-    <button mat-raised-button color="secondary" mat-button routerLink="/candidate-list"
-            type="button">Cancel
-    </button>
+    <div class="action-buttons">
+      <button mat-raised-button color="primary" type="submit"
+              [disabled]="!candidateForm.valid">Save
+      </button>
+      <button mat-raised-button color="secondary" mat-button routerLink="/candidate-list"
+              type="button">Cancel
+      </button>
+    </div>
   </form>
 
 </div>

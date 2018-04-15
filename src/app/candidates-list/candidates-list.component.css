@@ -36,3 +36,14 @@
   width: 100%;
 }
 
+mat-row {
+  cursor: pointer
+}
+
+mat-row:hover {
+  background: aliceblue;
+}
+
+.option-cell {
+  cursor: initial;
+}
