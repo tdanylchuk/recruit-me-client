@@ -1,7 +1,3 @@
-<h1>Greeting</h1>
-<div [hidden]="!authorizationService.isAuthenticated()">
-  <p>Hello {{user.firstName}} {{user.lastName}}</p>
-</div>
-<div [hidden]="authorizationService.isAuthenticated()">
-  <p>Login to see your greeting</p>
+<div class="page-content">
+  <h1>Greetings {{user.firstName}} {{user.lastName}}</h1>
 </div>
