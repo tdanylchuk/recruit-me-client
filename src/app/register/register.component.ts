@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthorizationService} from "../shared/authorization/authorization-service.service";
 import {Router} from "@angular/router";
+import {MatSnackBar} from "@angular/material";
 
 @Component({
   selector: 'app-register',
@@ -20,7 +21,8 @@ export class RegisterComponent implements OnInit {
   hideRepeatPassword = true;
 
   constructor(private authorizationService: AuthorizationService,
-              private router: Router) {
+              private router: Router,
+              private snackBar: MatSnackBar) {
   }
 
   ngOnInit() {
@@ -31,9 +33,11 @@ export class RegisterComponent implements OnInit {
 
   register() {
     this.authorizationService.register(this.userDetails).subscribe(() => {
+      this.snackBar.open(`User [${this.userDetails.email}] has been registered.`, null, {
+        duration: 2000,
+      });
       this.router.navigateByUrl("/login");
     })
   }
-
 
 }

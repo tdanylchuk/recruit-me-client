@@ -21,7 +21,7 @@ export class CandidateEditComponent implements OnInit, OnDestroy {
               private router: Router,
               private candidateService: CandidatesService,
               public attachmentService: AttachmentService,
-              public snackBar: MatSnackBar) {
+              private snackBar: MatSnackBar) {
   }
 
   ngOnInit() {
@@ -77,36 +77,16 @@ export class CandidateEditComponent implements OnInit, OnDestroy {
 
   uploadAttachment(event, candidateId) {
     let files = event.dataTransfer ? event.dataTransfer.files : event.target.files;
-
-    let xhr = new XMLHttpRequest(), formData = new FormData();
-
-    for (let i = 0; i < files.length; i++) {
-      formData.append("files", files[i], files[i].name);
-    }
-
-    // xhr.upload.addEventListener('progress', (e: ProgressEvent) => {
-    //   if (e.lengthComputable) {
-    //     this.progress = Math.round((e.loaded * 100) / e.total);
-    //   }
-    // }, false);
-
-    xhr.onreadystatechange = () => {
-      if (xhr.readyState == 4) {
-        if (xhr.status >= 200 && xhr.status < 300) {
-          this.candidateService.addAttachments(candidateId, xhr.response).subscribe(() => {
-            this.ngOnInit();
-            this.showSnackBar(`[${files.length}] files has been uploaded.`);
-          }, error => this.showSnackBar(`Failed to assign [${files.length}] files to candidate[${candidateId}].`))
-        }
-        else {
-          this.showSnackBar(`Failed to upload files - ${xhr.status.toString()}.`);
-        }
-        // (document.getElementById("attachmentInput") as HTMLInputElement).value = '';
-      }
-    };
-
-    xhr.open("POST", this.attachmentService.getUploadUrl(), true);
-    xhr.send(formData);
+    this.attachmentService.upload(files).subscribe(response => {
+      this.candidateService.addAttachments(candidateId, response).subscribe(() => {
+        this.ngOnInit();
+        this.showSnackBar(`[${files.length}] files has been uploaded.`);
+      }, error => {
+        this.showSnackBar(`Failed to assign [${files.length}] files to candidate[${candidateId}].`)
+      });
+    }, error => {
+      this.showSnackBar(`Failed to upload [${files.length}] files to candidate[${candidateId}].`);
+    });
   }
 
   showSnackBar(message: string, timeout = 2000) {

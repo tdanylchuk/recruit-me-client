@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthorizationService} from "../shared/authorization/authorization-service.service";
+import {StorageService} from "../shared/storage/storage.service";
 
 @Component({
   selector: 'app-main',
@@ -8,10 +9,10 @@ import {AuthorizationService} from "../shared/authorization/authorization-servic
 })
 export class HomeComponent implements OnInit {
 
-  username: string = '';
+  user: any;
 
   constructor(public authorizationService: AuthorizationService) {
-    this.username = authorizationService.getUsername();
+    this.user = StorageService.getUser();
   }
 
   ngOnInit() {

@@ -15,3 +15,7 @@
   flex-direction: column;
   display: flex;
 }
+
+mat-icon {
+  cursor: pointer;
+}

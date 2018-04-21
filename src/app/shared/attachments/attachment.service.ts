@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import * as FileSaver from "file-saver";
 import {Observable} from "rxjs/Observable";
 import {environment} from "../../../environments/environment";
@@ -23,12 +23,22 @@ export class AttachmentService {
       });
   }
 
-  delete(attachmentId: any): Observable<Object> {
-    return this.http.delete(`${this.ATTACHMENTS_API}/${attachmentId}`);
+  upload(files): Observable<any> {
+    let formData: FormData = new FormData();
+
+    for (let i = 0; i < files.length; i++) {
+      formData.append("files", files[i], files[i].name);
+    }
+
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'multipart/form-data');
+    headers.append('Accept', 'application/json');
+    let options = {headers: headers};
+    return this.http.post(this.UPLOAD_ATTACHMENTS_API, formData, options);
   }
 
-  getUploadUrl(): string {
-    return this.UPLOAD_ATTACHMENTS_API;
+  delete(attachmentId: any): Observable<Object> {
+    return this.http.delete(`${this.ATTACHMENTS_API}/${attachmentId}`);
   }
 
 }

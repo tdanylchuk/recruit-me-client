@@ -1,6 +1,6 @@
 <h1>Greeting</h1>
 <div [hidden]="!authorizationService.isAuthenticated()">
-  <p>Hello {{username}}</p>
+  <p>Hello {{user.firstName}} {{user.lastName}}</p>
 </div>
 <div [hidden]="authorizationService.isAuthenticated()">
   <p>Login to see your greeting</p>

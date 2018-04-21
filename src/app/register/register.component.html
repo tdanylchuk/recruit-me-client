@@ -37,7 +37,9 @@
         </mat-form-field>
 
         <mat-form-field class="registration-field">
-          <input matInput required
+          <input matInput
+                 required
+                 [(ngModel)]="userDetails.firstName"
                  placeholder="First name"
                  #firstName
                  name="firstName"/>
@@ -45,6 +47,7 @@
 
         <mat-form-field class="registration-field">
           <input matInput
+                 [(ngModel)]="userDetails.lastName"
                  placeholder="Last name"
                  #lastName
                  name="lastName"/>
