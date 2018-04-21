@@ -1,0 +1,65 @@
+<form role="form" #registrationForm="ngForm"  (submit)="register()">
+
+  <div class="page-content">
+    <mat-card class="content">
+
+      <mat-card-title>Registration form:</mat-card-title>
+      <mat-card-content>
+
+        <mat-form-field class="registration-field">
+          <input matInput placeholder="Email"
+                 [(ngModel)]="userDetails.email"
+                 required email name="email" #email>
+          <mat-error *ngIf="!email.valid">Not a valid email</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="registration-field">
+          <input matInput
+                 [type]="hidePassword ? 'password' : 'text'"
+                 required
+                 placeholder="Password"
+                 #password
+                 name="password"
+                 [(ngModel)]="userDetails.password"/>
+          <mat-icon matSuffix (click)="hidePassword = !hidePassword">{{hidePassword ? 'visibility' : 'visibility_off'}}</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field class="registration-field">
+          <input matInput
+                 [type]="hideRepeatPassword ? 'password' : 'text'"
+                 #repeatPassword ngModel
+                 repeatPassword="{{userDetails.password}}"
+                 required
+                 placeholder="Repeat password"
+                 name="repeatPassword"/>
+          <mat-icon matSuffix (click)="hideRepeatPassword = !hideRepeatPassword">{{hideRepeatPassword ? 'visibility' : 'visibility_off'}}
+          </mat-icon>
+        </mat-form-field>
+
+        <mat-form-field class="registration-field">
+          <input matInput required
+                 placeholder="First name"
+                 #firstName
+                 name="firstName"/>
+        </mat-form-field>
+
+        <mat-form-field class="registration-field">
+          <input matInput
+                 placeholder="Last name"
+                 #lastName
+                 name="lastName"/>
+        </mat-form-field>
+
+      </mat-card-content>
+
+      <mat-card-actions align="center">
+        <button mat-raised-button color="primary" type="submit"
+                [disabled]="!registrationForm.valid">Register
+        </button>
+        <button mat-raised-button color="secondary" [routerLink]="['/login']">Login</button>
+      </mat-card-actions>
+
+    </mat-card>
+
+  </div>
+</form>

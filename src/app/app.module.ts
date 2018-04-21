@@ -22,22 +22,26 @@ import {
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {CandidateEditComponent} from './candidate-edit/candidate-edit.component';
 import {RouterModule} from '@angular/router';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AttachmentService} from "./shared/attachments/attachment.service";
-import {LoginComponentComponent} from './login-component/login-component.component';
+import {LoginComponent} from './login/login.component';
 import {HomeComponent} from './home/home.component';
 import {AuthorizationService} from "./shared/authorization/authorization-service.service";
 import {XhrInterceptor} from "./shared/http-interceptor/xhr-interceptor";
 import {AuthInterceptor} from "./shared/http-interceptor/auth-interceptor";
 import {AppRoutingModule} from "./routing-module/app-routing.module";
+import { RegisterComponent } from './register/register.component';
+import { RepeatPasswordValidatorDirective } from './register/repeat-password-validator.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     CandidatesListComponent,
     CandidateEditComponent,
-    LoginComponentComponent,
-    HomeComponent
+    LoginComponent,
+    HomeComponent,
+    RegisterComponent,
+    RepeatPasswordValidatorDirective
   ],
   imports: [
     BrowserModule,
@@ -57,7 +61,8 @@ import {AppRoutingModule} from "./routing-module/app-routing.module";
     MatGridListModule,
     MatSnackBarModule,
     MatMenuModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [CandidatesService,
     AttachmentService,

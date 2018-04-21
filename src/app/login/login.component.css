@@ -1,0 +1,18 @@
+.page-content {
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content {
+  width: 300px;
+  margin: 10px auto;
+}
+
+.field {
+  max-width: 100%;
+  flex-direction: column;
+  display: flex;
+}
+

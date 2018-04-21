@@ -2,10 +2,10 @@
   <header role="banner">
     <mat-toolbar color="primary">
       <button *ngIf="authorizationService.isAuthenticated()"
-        type="button"
-        mat-icon-button
-        (click)="sidenav.toggle()"
-        title="Open menu">
+              type="button"
+              mat-icon-button
+              (click)="sidenav.toggle()"
+              title="Open menu">
         <mat-icon>menu</mat-icon>
       </button>
       <span style="margin-left: 20px">Welcome to RecruitMe </span>
@@ -29,9 +29,9 @@
             <mat-icon>portrait</mat-icon>
             <span>Login</span>
           </button>
-          <button mat-menu-item>
+          <button mat-menu-item [routerLink]="['register']">
             <mat-icon>portrait</mat-icon>
-            <span>Register (TBD)</span>
+            <span>Register</span>
           </button>
         </ng-container>
       </mat-menu>

@@ -2,18 +2,19 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from "@angular/router";
 import {CandidateEditComponent} from "../candidate-edit/candidate-edit.component";
 import {CandidatesListComponent} from "../candidates-list/candidates-list.component";
-import {LoginComponentComponent} from "../login-component/login-component.component";
+import {LoginComponent} from "../login/login.component";
 import {HomeComponent} from "../home/home.component";
 import {AuthGuardService} from "../shared/authorization/auth-guard.service";
+import {RegisterComponent} from "../register/register.component";
 
 const appRoutes: Routes = [
-  // {
-  //   path: '**',
-  //   redirectTo: ''
-  // },
   {
     path: 'login',
-    component: LoginComponentComponent
+    component: LoginComponent
+  },
+  {
+    path: 'register',
+    component: RegisterComponent
   },
   {
     path: '',

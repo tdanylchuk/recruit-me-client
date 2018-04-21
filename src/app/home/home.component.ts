@@ -8,11 +8,10 @@ import {AuthorizationService} from "../shared/authorization/authorization-servic
 })
 export class HomeComponent implements OnInit {
 
-  user: any;
+  username: string = '';
 
   constructor(public authorizationService: AuthorizationService) {
-    this.user.username = authorizationService.getUsername();
-    console.info(this.user);
+    this.username = authorizationService.getUsername();
   }
 
   ngOnInit() {

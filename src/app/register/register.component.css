@@ -5,14 +5,13 @@
   align-items: center;
 }
 
-.login-content {
+.content {
   width: 300px;
   margin: 10px auto;
 }
 
-.field {
-  max-width: 95%;
+.registration-field {
+  max-width: 100%;
   flex-direction: column;
   display: flex;
 }
-

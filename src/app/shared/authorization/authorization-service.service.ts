@@ -12,10 +12,9 @@ export class AuthorizationService {
   }
 
   redirectUrl: string = '/';
-  username: string;
 
   private LOGOUT_API = environment.apiRoot + '/logout';
-  private REGISTRATION_API = environment.apiRoot + '/registration';
+  private REGISTRATION_API = environment.apiRoot + '/register';
   private USER_API = environment.apiRoot + '/user';
 
   logout(): Observable<any> {
@@ -24,7 +23,7 @@ export class AuthorizationService {
     });
   }
 
-  authenticate(credentials, callback) {
+  authenticate(credentials, callback, errorCallback) {
     const httpOptions = {
       headers: new HttpHeaders(credentials ? {
         Authorization: `Basic ${btoa(credentials.username + ':' + credentials.password)}`
@@ -33,13 +32,19 @@ export class AuthorizationService {
 
     this.http.get(this.USER_API, httpOptions).subscribe(response => {
       localStorage.setItem("user", response as string);
-      this.username = (response as any).name;
+      localStorage.setItem("username", (response as any).name);
       return callback && callback();
+    }, error => {
+      return errorCallback && errorCallback(error);
     });
   }
 
-  getUsername(): any {
-    return this.username ? this.username : "undefined";
+  register(userDetails: any): Observable<any> {
+    return this.http.post(this.REGISTRATION_API, userDetails);
+  }
+
+  getUsername(): string {
+    return localStorage.getItem("username");
   }
 
   isAuthenticated(): boolean {

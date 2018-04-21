@@ -4,23 +4,38 @@ import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login-component',
-  templateUrl: './login-component.component.html',
-  styleUrls: ['./login-component.component.css']
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
-export class LoginComponentComponent implements OnInit {
+export class LoginComponent implements OnInit {
 
-  credentials = {username: '', password: ''};
+  credentials = {
+    username: '',
+    password: ''
+  };
+  errorMessage: string;
+
+  hidePassword = true;
 
   constructor(private authorizationService: AuthorizationService,
               private router: Router) {
   }
 
   ngOnInit() {
+    if (this.authorizationService.isAuthenticated()) {
+      this.router.navigateByUrl("/home");
+    }
   }
 
   login() {
     this.authorizationService.authenticate(this.credentials, () => {
       this.router.navigateByUrl(this.authorizationService.redirectUrl);
+    }, error => {
+      this.errorMessage = 'Invalid credentials';
     });
+  }
+
+  resetErrorMessage() {
+    this.errorMessage = null
   }
 }
