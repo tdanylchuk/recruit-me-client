@@ -1,6 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 
 import {AppComponent} from './app.component';
 import {CandidatesService} from "./shared/candidates/candidates.service";
@@ -21,35 +21,23 @@ import {
 } from "@angular/material";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {CandidateEditComponent} from './candidate-edit/candidate-edit.component';
-import {RouterModule, Routes} from '@angular/router';
+import {RouterModule} from '@angular/router';
 import {FormsModule} from "@angular/forms";
 import {AttachmentService} from "./shared/attachments/attachment.service";
-
-const appRoutes: Routes = [
-  // {
-  //   path: '',
-  //   redirectTo: '/candidate-list',
-  //   pathMatch: 'full'
-  // },
-  {
-    path: 'candidate-list',
-    component: CandidatesListComponent
-  },
-  {
-    path: 'candidate-add',
-    component: CandidateEditComponent
-  },
-  {
-    path: 'candidate-edit/:id',
-    component: CandidateEditComponent
-  }
-];
+import {LoginComponentComponent} from './login-component/login-component.component';
+import {HomeComponent} from './home/home.component';
+import {AuthorizationService} from "./shared/authorization/authorization-service.service";
+import {XhrInterceptor} from "./shared/http-interceptor/xhr-interceptor";
+import {AuthInterceptor} from "./shared/http-interceptor/auth-interceptor";
+import {AppRoutingModule} from "./routing-module/app-routing.module";
 
 @NgModule({
   declarations: [
     AppComponent,
     CandidatesListComponent,
-    CandidateEditComponent
+    CandidateEditComponent,
+    LoginComponentComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -69,9 +57,14 @@ const appRoutes: Routes = [
     MatGridListModule,
     MatSnackBarModule,
     MatMenuModule,
-    RouterModule.forRoot(appRoutes)
+    AppRoutingModule
   ],
-  providers: [CandidatesService, AttachmentService],
+  providers: [CandidatesService,
+    AttachmentService,
+    AuthorizationService,
+    {provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
-import {Constants} from "../constants.enum";
+import {environment} from "../../../environments/environment";
 
 @Injectable()
 export class CandidatesService {
@@ -9,8 +9,7 @@ export class CandidatesService {
   constructor(private http: HttpClient) {
   }
 
-  private API = '//' + Constants.restEndpointUrl;
-  private CANDIDATES_API = this.API + '/candidates';
+  private CANDIDATES_API = environment.apiRoot + '/candidates';
 
   getAll(): Observable<any> {
     return this.http.get(this.CANDIDATES_API);

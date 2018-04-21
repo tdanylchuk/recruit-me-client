@@ -58,7 +58,7 @@
     "component": {},
     "serve": {
       "port": 4200,
-      "host": "192.168.2.216",
+      "host": "192.168.2.191",
       "liveReload": true
     }
   }
