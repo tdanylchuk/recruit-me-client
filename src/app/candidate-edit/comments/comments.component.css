@@ -1,0 +1,44 @@
+.comment-input {
+  width: 100%;
+  margin: 7px;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  box-shadow: 2px 2px 5px grey;
+}
+
+.add-comment-grid {
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-self: flex-end;
+  position: absolute;
+}
+
+textarea {
+  resize: none;
+}
+
+.comment-button {
+  margin-right: 7px;
+}
+
+.upload-date-column {
+  flex: 1;
+  max-width: 110px
+}
+
+.comment-table {
+  width: 98%;
+  left: 1%;
+  right: 1%;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 48px;
+  bottom: 96px;
+  overflow: auto;
+}

@@ -1,3 +1,49 @@
-<p>
-  comments works!
-</p>
+<mat-table #table [dataSource]="commentDS" class="comment-table">
+
+  <ng-container matColumnDef="author">
+    <mat-header-cell *matHeaderCellDef class="upload-date-column">AUTHOR</mat-header-cell>
+    <mat-cell class="upload-date-column" *matCellDef="let comment">{{comment.author.firstName}} {{comment.author.lastName}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="date">
+    <mat-header-cell class="upload-date-column" *matHeaderCellDef>ADDED DATE</mat-header-cell>
+    <mat-cell class="upload-date-column" *matCellDef="let comment">{{comment.addedDate | date}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="content">
+    <mat-header-cell *matHeaderCellDef>COMMENT</mat-header-cell>
+    <mat-cell *matCellDef="let comment">{{comment.content}}</mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="['author','date', 'content']"></mat-header-row>
+  <mat-row *matRowDef="let rowData; columns: ['author','date', 'content']"></mat-row>
+</mat-table>
+
+<mat-grid-list cols="9" class="add-comment-grid" rowHeight="48px">
+  <mat-grid-tile [colspan]="8" [rowspan]="2">
+    <mat-form-field class="comment-input">
+        <textarea matInput
+                  #commentInput
+                  placeholder="Leave a comment"
+                  rows="2"></textarea>
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile class="comment-button">
+    <button mat-raised-button [disabled]="!commentInput.value"
+            color="primary"
+            aria-label="Send"
+            type="submit"
+            (click)="postComment(commentInput.value); commentInput.value=''">
+      <mat-icon>send</mat-icon>
+    </button>
+  </mat-grid-tile>
+  <mat-grid-tile class="comment-button">
+    <button mat-raised-button [disabled]="!commentInput.value"
+            color="warn"
+            aria-label="Clear"
+            (click)="commentInput.value=''">
+      <mat-icon>clear</mat-icon>
+    </button>
+  </mat-grid-tile>
+</mat-grid-list>
+

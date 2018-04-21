@@ -30,10 +30,11 @@ import {AuthorizationService} from "./shared/authorization/authorization-service
 import {XhrInterceptor} from "./shared/http-interceptor/xhr-interceptor";
 import {AuthInterceptor} from "./shared/http-interceptor/auth-interceptor";
 import {AppRoutingModule} from "./routing-module/app-routing.module";
-import { RegisterComponent } from './register/register.component';
-import { RepeatPasswordValidatorDirective } from './register/repeat-password-validator.directive';
-import { CommentsComponent } from './candidate-edit/comments/comments.component';
-import { AttachmentsComponent } from './candidate-edit/attachments/attachments.component';
+import {RegisterComponent} from './register/register.component';
+import {RepeatPasswordValidatorDirective} from './register/repeat-password-validator.directive';
+import {CommentsComponent} from './candidate-edit/comments/comments.component';
+import {AttachmentsComponent} from './candidate-edit/attachments/attachments.component';
+import {CommentService} from "./shared/comment/comment.service";
 
 @NgModule({
   declarations: [
@@ -68,9 +69,11 @@ import { AttachmentsComponent } from './candidate-edit/attachments/attachments.c
     AppRoutingModule,
     ReactiveFormsModule
   ],
-  providers: [CandidatesService,
+  providers: [
+    CandidatesService,
     AttachmentService,
     AuthorizationService,
+    CommentService,
     {provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
   ],
