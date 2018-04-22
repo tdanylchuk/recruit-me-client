@@ -18,8 +18,7 @@ button {
 }
 
 .content-grid {
-  margin-left: 10px;
-  margin-right: 10px;
+ margin: 10px;
 }
 
 mat-grid-tile {
@@ -27,7 +26,17 @@ mat-grid-tile {
   box-shadow: 5px 5px 20px grey;
 }
 
-.action-buttons {
-  margin-left: 10px;
-  margin-top: 10px;
+.header {
+  height: 57px;
+}
+
+.action-button {
+  float: right;
+  margin-top: 15px;
+  margin-right: 20px;
+}
+
+.header-title {
+  float: left;
+  margin: 20px;
 }

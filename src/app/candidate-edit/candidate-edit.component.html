@@ -1,9 +1,18 @@
 <div class="container">
   <form #candidateForm="ngForm" (ngSubmit)="save(candidateForm.value)">
 
-    <h2 mat-subheader>{{candidate.id ? 'Edit' : 'Add'}} Candidate</h2>
+    <div class="header">
+      <h2 class="header-title"><strong>{{candidate.id ? 'Edit' : 'Add'}} Candidate</strong></h2>
+      <button class="action-button" matSuffix mat-raised-button color="secondary" routerLink="/candidate-list"
+              type="button">Return
+      </button>
+      <button class="action-button" matSuffix mat-raised-button color="primary" type="submit"
+              [disabled]="!candidateForm.valid">Save
+      </button>
 
-    <mat-grid-list cols="{{isMobile() ? 1 : 2}}" rowHeight="410px" gutterSize="10px" class="content-grid">
+    </div>
+
+    <mat-grid-list cols="{{isMobile() ? 1 : 2}}" rowHeight="410px" gutterSize="13px" class="content-grid">
       <mat-grid-tile>
         <mat-grid-tile-header> Fill candidate data:</mat-grid-tile-header>
 
@@ -55,14 +64,6 @@
 
     </mat-grid-list>
 
-    <div class="action-buttons">
-      <button mat-raised-button color="primary" type="submit"
-              [disabled]="!candidateForm.valid">Save
-      </button>
-      <button mat-raised-button color="secondary" mat-button routerLink="/candidate-list"
-              type="button">Cancel
-      </button>
-    </div>
   </form>
 
 </div>
