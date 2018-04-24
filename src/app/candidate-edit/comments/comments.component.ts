@@ -1,7 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {CommentService} from "../../shared/comment/comment.service";
 import {StorageService} from "../../shared/storage/storage.service";
-import {MatTableDataSource} from "@angular/material";
 
 @Component({
   selector: 'comments-component',
@@ -13,15 +12,14 @@ export class CommentsComponent implements OnInit {
   @Input('candidate')
   candidate: any;
 
-  commentDS = new MatTableDataSource();
+  comments: any;
 
   constructor(private commentService: CommentService) {
   }
 
   ngOnInit() {
     this.commentService.getCommentsByTarget(this.candidate.id).subscribe(data => {
-      this.commentDS.data = data._embedded.commentEntities;
-      this.commentDS._updateChangeSubscription()
+      this.comments = data._embedded.commentEntities;
     });
   }
 

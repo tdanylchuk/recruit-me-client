@@ -14,7 +14,7 @@
 
     <mat-grid-list cols="{{isMobile() ? 1 : 2}}" rowHeight="410px" gutterSize="13px" class="content-grid">
       <mat-grid-tile>
-        <mat-grid-tile-header> Fill candidate data:</mat-grid-tile-header>
+        <mat-grid-tile-header style="background: #3f51b5"> Fill candidate data:</mat-grid-tile-header>
 
         <mat-list class="mat-grid-content">
           <input type="hidden" name="href" [(ngModel)]="candidate.href">
@@ -51,14 +51,14 @@
       </mat-grid-tile>
 
       <mat-grid-tile *ngIf="candidate.id != null">
-        <mat-grid-tile-header>Manage attachments:</mat-grid-tile-header>
+        <mat-grid-tile-header style="background: #3f51b5">Manage attachments:</mat-grid-tile-header>
         <attachments-component #attachmentComponent
                                [candidate]="getCandidate"
                                [refreshCallback]="initCandidateCallback"></attachments-component>
       </mat-grid-tile>
 
       <mat-grid-tile *ngIf="candidate.id != null">
-        <mat-grid-tile-header>Comments:</mat-grid-tile-header>
+        <mat-grid-tile-header style="background: #3f51b5">Comments:</mat-grid-tile-header>
         <comments-component [candidate]="candidate"></comments-component>
       </mat-grid-tile>
 
