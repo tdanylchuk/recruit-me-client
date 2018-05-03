@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit} from '@angular/core';
 import {MatSnackBar, MatTableDataSource} from "@angular/material";
 import {AttachmentService} from "../../shared/attachments/attachment.service";
 import {CandidatesService} from "../../shared/candidates/candidates.service";
@@ -11,10 +11,10 @@ import {CandidatesService} from "../../shared/candidates/candidates.service";
 export class AttachmentsComponent implements OnInit {
 
   @Input('candidate')
-  getCandidate: any;
+  candidate: any;
 
-  @Input('refreshCallback')
-  refreshCallback: any;
+  @Input('dataChangedEmitter')
+  dataChangedEmitter: EventEmitter<any>;
 
   attachmentsDS = new MatTableDataSource();
 
@@ -24,7 +24,9 @@ export class AttachmentsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.attachmentsDS.data = this.getCandidate()._embedded ? this.getCandidate()._embedded.attachments : null;
+    this.attachmentService.getAttachments(this.candidate.id).subscribe(data => {
+      this.attachmentsDS.data = data._embedded.attachmentEntities;
+    });
   }
 
   deleteAttachment(attachment) {
@@ -33,16 +35,18 @@ export class AttachmentsComponent implements OnInit {
       this.attachmentsDS.data.splice(index, 1);
       this.attachmentsDS._updateChangeSubscription();
       this.showSnackBar(`Attachment[${attachment.name}] has been deleted.`);
+      this.dataChangedEmitter.emit();
     }, error => this.showSnackBar(`Failed to delete attachment. ${error.message}`));
   }
 
   uploadAttachment(event) {
-    let candidateId = this.getCandidate().id;
+    let candidateId = this.candidate.id;
     let files = event.dataTransfer ? event.dataTransfer.files : event.target.files;
     this.attachmentService.upload(files).subscribe(response => {
       this.candidateService.addAttachments(candidateId, response).subscribe(() => {
         this.refreshTable();
         this.showSnackBar(`[${files.length}] files has been uploaded.`);
+        this.dataChangedEmitter.emit();
       }, error => {
         this.showSnackBar(`Failed to assign [${files.length}] files to candidate[${candidateId}].`)
       });
@@ -52,10 +56,8 @@ export class AttachmentsComponent implements OnInit {
   }
 
   refreshTable() {
-    this.refreshCallback(() => {
-      this.ngOnInit();
-      this.attachmentsDS._updateChangeSubscription();
-    });
+    this.ngOnInit();
+    this.attachmentsDS._updateChangeSubscription();
   }
 
   showSnackBar(message: string, timeout = 2000) {

@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs/Subscription';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CandidatesService} from '../shared/candidates/candidates.service';
@@ -14,15 +14,8 @@ export class CandidateEditComponent implements OnInit, OnDestroy {
 
   candidate: any = {};
   sub: Subscription;
-  candidateId: any;
 
-  initCandidateCallback = (any) => {
-    this.initCandidate(any);
-  };
-
-  getCandidate = (any) => {
-    return this.candidate;
-  };
+  dataChangedEmitter = new EventEmitter<any>();
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -32,24 +25,19 @@ export class CandidateEditComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
-      this.candidateId = params['id'];
-      this.initCandidateCallback(null)
+      let candidateId = params['id'];
+      if (candidateId) {
+        this.candidateService.get(candidateId).subscribe((candidate: any) => {
+          if (candidate) {
+            this.candidate = candidate;
+            this.candidate.href = candidate._links.self.href;
+          } else {
+            console.log(`Candidate with id '${candidateId}' not found, returning to list`);
+            this.gotoList();
+          }
+        });
+      }
     });
-  }
-
-  initCandidate(callback) {
-    if (this.candidateId) {
-      this.candidateService.get(this.candidateId).subscribe((candidate: any) => {
-        if (candidate) {
-          this.candidate = candidate;
-          callback && callback();
-          this.candidate.href = candidate._links.self.href;
-        } else {
-          console.log(`Candidate with id '${this.candidateId}' not found, returning to list`);
-          this.gotoList();
-        }
-      });
-    }
   }
 
   ngOnDestroy() {

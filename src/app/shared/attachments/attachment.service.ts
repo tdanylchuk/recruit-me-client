@@ -41,4 +41,8 @@ export class AttachmentService {
     return this.http.delete(`${this.ATTACHMENTS_API}/${attachmentId}`);
   }
 
+  getAttachments(targetId: any) : Observable<any> {
+    return this.http.get(`${this.ATTACHMENTS_API}/search/findByCandidateId?candidateId=${targetId}`)
+  }
+
 }

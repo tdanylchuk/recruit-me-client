@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit} from '@angular/core';
 import {CommentService} from "../../shared/comment/comment.service";
 import {StorageService} from "../../shared/storage/storage.service";
 
@@ -11,6 +11,9 @@ export class CommentsComponent implements OnInit {
 
   @Input('candidate')
   candidate: any;
+
+  @Input('dataChangedEmitter')
+  dataChangedEmitter: EventEmitter<any>;
 
   comments: any;
 
@@ -31,6 +34,7 @@ export class CommentsComponent implements OnInit {
     };
     this.commentService.postComment(comment).subscribe(() => {
       this.ngOnInit();
+      this.dataChangedEmitter.emit('comment');
     });
   }
 

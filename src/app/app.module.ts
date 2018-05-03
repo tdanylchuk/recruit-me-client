@@ -35,6 +35,8 @@ import {RepeatPasswordValidatorDirective} from './register/repeat-password-valid
 import {CommentsComponent} from './candidate-edit/comments/comments.component';
 import {AttachmentsComponent} from './candidate-edit/attachments/attachments.component';
 import {CommentService} from "./shared/comment/comment.service";
+import {ActivityFeedComponent} from './candidate-edit/activity-feed/activity-feed.component';
+import {ActivityService} from "./shared/activity/activity.service";
 
 @NgModule({
   declarations: [
@@ -46,7 +48,8 @@ import {CommentService} from "./shared/comment/comment.service";
     RegisterComponent,
     RepeatPasswordValidatorDirective,
     CommentsComponent,
-    AttachmentsComponent
+    AttachmentsComponent,
+    ActivityFeedComponent
   ],
   imports: [
     BrowserModule,
@@ -74,6 +77,7 @@ import {CommentService} from "./shared/comment/comment.service";
     AttachmentService,
     AuthorizationService,
     CommentService,
+    ActivityService,
     {provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
   ],
