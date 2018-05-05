@@ -37,6 +37,9 @@ import {AttachmentsComponent} from './candidate-edit/attachments/attachments.com
 import {CommentService} from "./shared/comment/comment.service";
 import {ActivityFeedComponent} from './candidate-edit/activity-feed/activity-feed.component';
 import {ActivityService} from "./shared/activity/activity.service";
+import {UserProfileComponent} from './user-profile/user-profile.component';
+import {UserService} from "./shared/user/user.service";
+import {FlexLayoutModule} from "@angular/flex-layout";
 
 @NgModule({
   declarations: [
@@ -49,7 +52,8 @@ import {ActivityService} from "./shared/activity/activity.service";
     RepeatPasswordValidatorDirective,
     CommentsComponent,
     AttachmentsComponent,
-    ActivityFeedComponent
+    ActivityFeedComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -70,7 +74,8 @@ import {ActivityService} from "./shared/activity/activity.service";
     MatSnackBarModule,
     MatMenuModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FlexLayoutModule
   ],
   providers: [
     CandidatesService,
@@ -78,6 +83,7 @@ import {ActivityService} from "./shared/activity/activity.service";
     AuthorizationService,
     CommentService,
     ActivityService,
+    UserService,
     {provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
   ],

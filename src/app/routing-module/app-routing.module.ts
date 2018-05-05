@@ -6,6 +6,7 @@ import {LoginComponent} from "../login/login.component";
 import {HomeComponent} from "../home/home.component";
 import {AuthGuardService} from "../shared/authorization/auth-guard.service";
 import {RegisterComponent} from "../register/register.component";
+import {UserProfileComponent} from "../user-profile/user-profile.component";
 
 const appRoutes: Routes = [
   {
@@ -41,6 +42,16 @@ const appRoutes: Routes = [
   {
     path: 'candidate-edit/:id',
     component: CandidateEditComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'profile/:id',
+    component: UserProfileComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'profile',
+    component: UserProfileComponent,
     canActivate: [AuthGuardService]
   }
 ];

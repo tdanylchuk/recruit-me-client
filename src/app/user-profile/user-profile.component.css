@@ -1,0 +1,37 @@
+.content-grid {
+  margin: 10px;
+}
+
+mat-grid-tile {
+  background: white;
+  box-shadow: 5px 5px 10px #3f51b5;
+}
+
+.field {
+  font-weight: bold;
+  font-size: large;
+  padding: 10px;
+}
+
+.field-value {
+  font-size: large;
+  padding: 10px;
+}
+
+mat-list {
+  width: 98%;
+  height: available;
+  left: 2%;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 48px;
+  bottom: 0;
+  overflow-y: scroll;
+}
+
+mat-list-item {
+  margin-top: -10px;
+  margin-bottom: -10px;
+}
+

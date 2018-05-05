@@ -16,16 +16,7 @@ export class ActivityFeedComponent implements OnInit {
 
   activities: any;
 
-  typeMapping = new Map([
-    ['CANDIDATE_COMMENT_ADDED', {message: 'added comment', icon: 'send'}],
-    ['CANDIDATE_ADDED', {message: 'added candidate', icon: 'person_add'}],
-    ['CANDIDATE_EDITED', {message: 'edited candidate', icon: 'edit'}],
-    ['CANDIDATE_DELETED', {message: 'deleted candidate', icon: 'delete'}],
-    ['CANDIDATE_ATTACHMENT_ADDED', {message: 'added attachment', icon: 'attach_file'}],
-    ['CANDIDATE_ATTACHMENT_DELETED', {message: 'deleted attachment', icon: 'delete'}]
-  ]);
-
-  constructor(private activityService: ActivityService) {
+  constructor(public activityService: ActivityService) {
   }
 
   ngOnInit() {
@@ -39,16 +30,6 @@ export class ActivityFeedComponent implements OnInit {
     this.activityService.getByTarget(this.candidate.id).subscribe(data => {
       this.activities = data._embedded.activityEntities;
     });
-  }
-
-  getMessage(activityType: string): any {
-    let props = this.typeMapping.get(activityType);
-    return props == undefined ? "undefined" : props.message;
-  }
-
-  getIcon(activityType: string): any {
-    let props = this.typeMapping.get(activityType);
-    return props == undefined ? "wb_sunny" : props.icon;
   }
 
 }
