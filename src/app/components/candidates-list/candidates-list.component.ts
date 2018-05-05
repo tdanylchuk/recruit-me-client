@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {CandidatesService} from '../shared/candidates/candidates.service';
+import {CandidatesService} from '../../shared/candidates/candidates.service';
 import {MatSnackBar, MatTableDataSource} from "@angular/material";
-import {AttachmentService} from "../shared/attachments/attachment.service";
+import {AttachmentService} from "../../shared/attachments/attachment.service";
 
 @Component({
   selector: 'app-candidates-list',

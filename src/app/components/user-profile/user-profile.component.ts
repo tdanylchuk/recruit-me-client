@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {Subscription} from "rxjs/Subscription";
-import {UserService} from "../shared/user/user.service";
+import {UserService} from "../../shared/user/user.service";
 import {ActivatedRoute} from "@angular/router";
-import {StorageService} from "../shared/storage/storage.service";
-import {ActivityService} from "../shared/activity/activity.service";
+import {StorageService} from "../../shared/storage/storage.service";
+import {ActivityService} from "../../shared/activity/activity.service";
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/of';

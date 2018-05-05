@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthorizationService} from "../shared/authorization/authorization-service.service";
-import {StorageService} from "../shared/storage/storage.service";
+import {AuthorizationService} from "../../shared/authorization/authorization-service.service";
+import {StorageService} from "../../shared/storage/storage.service";
 
 @Component({
   selector: 'app-main',

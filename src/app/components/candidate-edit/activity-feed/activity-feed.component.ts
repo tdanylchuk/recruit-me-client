@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit} from '@angular/core';
-import {ActivityService} from "../../shared/activity/activity.service";
+import {ActivityService} from "../../../shared/activity/activity.service";
 
 @Component({
   selector: 'activity-feed-component',

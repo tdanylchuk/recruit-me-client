@@ -4,7 +4,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 
 import {AppComponent} from './app.component';
 import {CandidatesService} from "./shared/candidates/candidates.service";
-import {CandidatesListComponent} from './candidates-list/candidates-list.component';
+import {CandidatesListComponent} from './components/candidates-list/candidates-list.component';
 import {
   MatButtonModule,
   MatCardModule,
@@ -20,27 +20,28 @@ import {
   MatTooltipModule
 } from "@angular/material";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {CandidateEditComponent} from './candidate-edit/candidate-edit.component';
+import {CandidateEditComponent} from './components/candidate-edit/candidate-edit.component';
 import {RouterModule} from '@angular/router';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AttachmentService} from "./shared/attachments/attachment.service";
-import {LoginComponent} from './login/login.component';
-import {HomeComponent} from './home/home.component';
+import {LoginComponent} from './components/login/login.component';
+import {HomeComponent} from './components/home/home.component';
 import {AuthorizationService} from "./shared/authorization/authorization-service.service";
 import {XhrInterceptor} from "./shared/http-interceptor/xhr-interceptor";
 import {AuthInterceptor} from "./shared/http-interceptor/auth-interceptor";
 import {AppRoutingModule} from "./routing-module/app-routing.module";
-import {RegisterComponent} from './register/register.component';
-import {RepeatPasswordValidatorDirective} from './register/repeat-password-validator.directive';
-import {CommentsComponent} from './candidate-edit/comments/comments.component';
-import {AttachmentsComponent} from './candidate-edit/attachments/attachments.component';
+import {RegisterComponent} from './components/register/register.component';
+import {RepeatPasswordValidatorDirective} from './components/register/repeat-password-validator.directive';
+import {CommentsComponent} from './components/candidate-edit/comments/comments.component';
+import {AttachmentsComponent} from './components/candidate-edit/attachments/attachments.component';
 import {CommentService} from "./shared/comment/comment.service";
-import {ActivityFeedComponent} from './candidate-edit/activity-feed/activity-feed.component';
+import {ActivityFeedComponent} from './components/candidate-edit/activity-feed/activity-feed.component';
 import {ActivityService} from "./shared/activity/activity.service";
-import {UserProfileComponent} from './user-profile/user-profile.component';
+import {UserProfileComponent} from './components/user-profile/user-profile.component';
 import {UserService} from "./shared/user/user.service";
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {ErrorInterceptor} from "./shared/http-interceptor/error-interceptor";
+import { VacanciesComponent } from './components/vacancies/vacancies.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import {ErrorInterceptor} from "./shared/http-interceptor/error-interceptor";
     CommentsComponent,
     AttachmentsComponent,
     ActivityFeedComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    VacanciesComponent
   ],
   imports: [
     BrowserModule,

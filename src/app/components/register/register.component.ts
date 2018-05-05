@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthorizationService} from "../shared/authorization/authorization-service.service";
+import {AuthorizationService} from "../../shared/authorization/authorization-service.service";
 import {Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material";
 

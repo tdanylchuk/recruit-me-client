@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit} from '@angular/core';
-import {CommentService} from "../../shared/comment/comment.service";
-import {StorageService} from "../../shared/storage/storage.service";
+import {CommentService} from "../../../shared/comment/comment.service";
+import {StorageService} from "../../../shared/storage/storage.service";
 
 @Component({
   selector: 'comments-component',

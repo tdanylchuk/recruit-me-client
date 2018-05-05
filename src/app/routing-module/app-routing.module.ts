@@ -1,12 +1,13 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from "@angular/router";
-import {CandidateEditComponent} from "../candidate-edit/candidate-edit.component";
-import {CandidatesListComponent} from "../candidates-list/candidates-list.component";
-import {LoginComponent} from "../login/login.component";
-import {HomeComponent} from "../home/home.component";
+import {CandidateEditComponent} from "../components/candidate-edit/candidate-edit.component";
+import {CandidatesListComponent} from "../components/candidates-list/candidates-list.component";
+import {LoginComponent} from "../components/login/login.component";
+import {HomeComponent} from "../components/home/home.component";
 import {AuthGuardService} from "../shared/authorization/auth-guard.service";
-import {RegisterComponent} from "../register/register.component";
-import {UserProfileComponent} from "../user-profile/user-profile.component";
+import {RegisterComponent} from "../components/register/register.component";
+import {UserProfileComponent} from "../components/user-profile/user-profile.component";
+import {VacanciesComponent} from "../components/vacancies/vacancies.component";
 
 const appRoutes: Routes = [
   {
@@ -52,6 +53,11 @@ const appRoutes: Routes = [
   {
     path: 'profile',
     component: UserProfileComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'vacancies',
+    component: VacanciesComponent,
     canActivate: [AuthGuardService]
   }
 ];

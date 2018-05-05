@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit} from '@angular/core';
 import {MatSnackBar, MatTableDataSource} from "@angular/material";
-import {AttachmentService} from "../../shared/attachments/attachment.service";
-import {CandidatesService} from "../../shared/candidates/candidates.service";
+import {AttachmentService} from "../../../shared/attachments/attachment.service";
+import {CandidatesService} from "../../../shared/candidates/candidates.service";
 
 @Component({
   selector: 'attachments-component',

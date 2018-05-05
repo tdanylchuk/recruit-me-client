@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs/Subscription';
 import {ActivatedRoute, Router} from '@angular/router';
-import {CandidatesService} from '../shared/candidates/candidates.service';
+import {CandidatesService} from '../../shared/candidates/candidates.service';
 import {NgForm} from '@angular/forms';
 import {MatSnackBar} from "@angular/material";
 
