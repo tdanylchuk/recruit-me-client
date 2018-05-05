@@ -9,12 +9,53 @@ export class ActivityService {
   private ACTIVITY_API = environment.apiRoot + '/activities';
 
   private typeMapping = new Map([
-    ['CANDIDATE_COMMENT_ADDED', {message: 'added comment', icon: 'send'}],
-    ['CANDIDATE_ADDED', {message: 'added candidate', icon: 'person_add'}],
-    ['CANDIDATE_EDITED', {message: 'edited candidate', icon: 'edit'}],
-    ['CANDIDATE_DELETED', {message: 'deleted candidate', icon: 'delete'}],
-    ['CANDIDATE_ATTACHMENT_ADDED', {message: 'added attachment', icon: 'attach_file'}],
-    ['CANDIDATE_ATTACHMENT_DELETED', {message: 'deleted attachment', icon: 'delete'}]
+    ['CANDIDATE_COMMENT_ADDED',
+      {
+        message: 'added comment for',
+        targetEndpoint: '/candidate-edit',
+        targetName : 'candidate',
+        icon: 'send'
+      }
+    ],
+    ['CANDIDATE_ADDED',
+      {
+        message: 'added',
+        targetEndpoint: '/candidate-edit',
+        targetName : 'candidate',
+        icon: 'person_add'
+      }
+    ],
+    ['CANDIDATE_EDITED', {
+      message: 'edited',
+      targetEndpoint: '/candidate-edit',
+      targetName : 'candidate',
+      icon: 'edit'
+    }
+    ],
+    ['CANDIDATE_DELETED',
+      {
+        message: 'deleted',
+        targetEndpoint: '/candidate-edit',
+        targetName : 'candidate',
+        icon: 'delete'
+      }
+    ],
+    ['CANDIDATE_ATTACHMENT_ADDED',
+      {
+        message: 'added attachment for',
+        targetEndpoint: '/candidate-edit',
+        targetName : 'candidate',
+        icon: 'attach_file'
+      }
+    ],
+    ['CANDIDATE_ATTACHMENT_DELETED',
+      {
+        message: 'deleted attachment for',
+        targetEndpoint: '/candidate-edit',
+        targetName : 'candidate',
+        icon: 'delete'
+      }
+    ]
   ]);
 
   constructor(private http: HttpClient) {
@@ -36,6 +77,16 @@ export class ActivityService {
   getIcon(activityType: string): string {
     let props = this.getMapping(activityType);
     return props == undefined ? "wb_sunny" : props.icon;
+  }
+
+  getTargetEndpoint(activityType: string) {
+    let props = this.getMapping(activityType);
+    return props.targetEndpoint;
+  }
+
+  getTargetName(activityType: string) {
+    let props = this.getMapping(activityType);
+    return props.targetName;
   }
 
   private getMapping(type: string): any {
