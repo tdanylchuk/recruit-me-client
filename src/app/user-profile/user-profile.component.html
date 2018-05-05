@@ -5,17 +5,17 @@
 
     <div fxLayout="row wrap" fxLayoutAlign="space-around" class="details-content">
 
-      <div fxFlex="50%" class="field" fxLayoutAlign="end">Name:</div>
+      <div fxFlex="50%" class="field" fxLayoutAlign="end">Name  <mat-icon>person</mat-icon>:</div>
       <div fxFlex="50%" class="field-value">{{user.firstName}} {{user.lastName}}</div>
 
-      <div fxFlex="50%" class="field" fxLayoutAlign="end">Email:</div>
+      <div fxFlex="50%" class="field" fxLayoutAlign="end">Email  <mat-icon>email</mat-icon>:</div>
       <div fxFlex="50%" class="field-value">{{user.email}} </div>
 
-      <div fxFlex="50%" class="field" fxLayoutAlign="end">Registration date:</div>
-      <div fxFlex="50%" class="field-value">{{user.registrationDate | date}} </div>
-
-      <div fxFlex="50%" class="field" fxLayoutAlign="end">Role:</div>
+      <div fxFlex="50%" class="field" fxLayoutAlign="end">Role  <mat-icon>verified_user</mat-icon>:</div>
       <div fxFlex="50%" class="field-value">{{user.role}} </div>
+
+      <div fxFlex="50%" class="field" fxLayoutAlign="end">Registration date  <mat-icon>date_range</mat-icon>:</div>
+      <div fxFlex="50%" class="field-value">{{user.registrationDate | date}} </div>
 
     </div>
   </mat-grid-tile>

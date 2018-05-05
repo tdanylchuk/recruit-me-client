@@ -40,6 +40,7 @@ import {ActivityService} from "./shared/activity/activity.service";
 import {UserProfileComponent} from './user-profile/user-profile.component';
 import {UserService} from "./shared/user/user.service";
 import {FlexLayoutModule} from "@angular/flex-layout";
+import {ErrorInterceptor} from "./shared/http-interceptor/error-interceptor";
 
 @NgModule({
   declarations: [
@@ -85,7 +86,8 @@ import {FlexLayoutModule} from "@angular/flex-layout";
     ActivityService,
     UserService,
     {provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true},
-    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })
