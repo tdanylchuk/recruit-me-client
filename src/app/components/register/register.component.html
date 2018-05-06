@@ -7,6 +7,7 @@
       <mat-card-content>
 
         <mat-form-field appearance="outline" class="registration-field">
+          <mat-label>Email:</mat-label>
           <input matInput placeholder="Email"
                  [(ngModel)]="userDetails.email"
                  required email name="email" #email>
@@ -14,6 +15,7 @@
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="registration-field">
+          <mat-label>Password:</mat-label>
           <input matInput
                  [type]="hidePassword ? 'password' : 'text'"
                  required
@@ -25,6 +27,7 @@
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="registration-field">
+          <mat-label>Repeat password:</mat-label>
           <input matInput
                  [type]="hideRepeatPassword ? 'password' : 'text'"
                  #repeatPassword ngModel
@@ -37,6 +40,7 @@
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="registration-field">
+          <mat-label>First name:</mat-label>
           <input matInput
                  required
                  [(ngModel)]="userDetails.firstName"
@@ -46,6 +50,7 @@
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="registration-field">
+          <mat-label>Last name:</mat-label>
           <input matInput
                  [(ngModel)]="userDetails.lastName"
                  placeholder="Last name"
