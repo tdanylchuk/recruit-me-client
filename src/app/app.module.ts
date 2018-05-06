@@ -20,7 +20,7 @@ import {
   MatTooltipModule
 } from "@angular/material";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {CandidateEditComponent} from './components/candidate-edit/candidate-edit.component';
+import {CandidateComponent} from './components/candidate/candidate.component';
 import {RouterModule} from '@angular/router';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AttachmentService} from "./shared/attachments/attachment.service";
@@ -32,22 +32,23 @@ import {AuthInterceptor} from "./shared/http-interceptor/auth-interceptor";
 import {AppRoutingModule} from "./routing-module/app-routing.module";
 import {RegisterComponent} from './components/register/register.component';
 import {RepeatPasswordValidatorDirective} from './components/register/repeat-password-validator.directive';
-import {CommentsComponent} from './components/candidate-edit/comments/comments.component';
-import {AttachmentsComponent} from './components/candidate-edit/attachments/attachments.component';
+import {CommentsComponent} from './components/candidate/comments/comments.component';
+import {AttachmentsComponent} from './components/candidate/attachments/attachments.component';
 import {CommentService} from "./shared/comment/comment.service";
-import {ActivityFeedComponent} from './components/candidate-edit/activity-feed/activity-feed.component';
+import {ActivityFeedComponent} from './components/candidate/activity-feed/activity-feed.component';
 import {ActivityService} from "./shared/activity/activity.service";
 import {UserProfileComponent} from './components/user-profile/user-profile.component';
 import {UserService} from "./shared/user/user.service";
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {ErrorInterceptor} from "./shared/http-interceptor/error-interceptor";
 import { VacanciesComponent } from './components/vacancies/vacancies.component';
+import { CandidateEditComponent } from './components/candidate/candidate-edit/candidate-edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CandidatesListComponent,
-    CandidateEditComponent,
+    CandidateComponent,
     LoginComponent,
     HomeComponent,
     RegisterComponent,
@@ -56,7 +57,8 @@ import { VacanciesComponent } from './components/vacancies/vacancies.component';
     AttachmentsComponent,
     ActivityFeedComponent,
     UserProfileComponent,
-    VacanciesComponent
+    VacanciesComponent,
+    CandidateEditComponent
   ],
   imports: [
     BrowserModule,

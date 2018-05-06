@@ -12,7 +12,7 @@ export class ActivityService {
     ['CANDIDATE_COMMENT_ADDED',
       {
         message: 'added comment for',
-        targetEndpoint: '/candidate-edit',
+        targetEndpoint: '/candidate',
         targetName : 'candidate',
         icon: 'send'
       }
@@ -20,14 +20,14 @@ export class ActivityService {
     ['CANDIDATE_ADDED',
       {
         message: 'added',
-        targetEndpoint: '/candidate-edit',
+        targetEndpoint: '/candidate',
         targetName : 'candidate',
         icon: 'person_add'
       }
     ],
     ['CANDIDATE_EDITED', {
       message: 'edited',
-      targetEndpoint: '/candidate-edit',
+      targetEndpoint: '/candidate',
       targetName : 'candidate',
       icon: 'edit'
     }
@@ -35,7 +35,7 @@ export class ActivityService {
     ['CANDIDATE_DELETED',
       {
         message: 'deleted',
-        targetEndpoint: '/candidate-edit',
+        targetEndpoint: '/candidate',
         targetName : 'candidate',
         icon: 'delete'
       }
@@ -43,7 +43,7 @@ export class ActivityService {
     ['CANDIDATE_ATTACHMENT_ADDED',
       {
         message: 'added attachment for',
-        targetEndpoint: '/candidate-edit',
+        targetEndpoint: '/candidate',
         targetName : 'candidate',
         icon: 'attach_file'
       }
@@ -51,7 +51,7 @@ export class ActivityService {
     ['CANDIDATE_ATTACHMENT_DELETED',
       {
         message: 'deleted attachment for',
-        targetEndpoint: '/candidate-edit',
+        targetEndpoint: '/candidate',
         targetName : 'candidate',
         icon: 'delete'
       }

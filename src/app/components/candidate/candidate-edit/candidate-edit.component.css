@@ -1,0 +1,15 @@
+.list-content {
+  position: absolute;
+  left: 10px;
+  top: 60px;
+}
+
+mat-list-item {
+  padding: 15px;
+}
+
+.save-button {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+}

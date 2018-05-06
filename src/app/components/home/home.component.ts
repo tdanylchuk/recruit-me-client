@@ -12,10 +12,10 @@ export class HomeComponent implements OnInit {
   user: any;
 
   constructor(public authorizationService: AuthorizationService) {
-    this.user = StorageService.getUser();
   }
 
   ngOnInit() {
+    this.user = StorageService.getUser();
   }
 
 }

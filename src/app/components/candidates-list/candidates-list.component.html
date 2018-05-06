@@ -56,7 +56,7 @@
 
     <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
 
-    <mat-row *matRowDef="let rowData; columns: columnsToDisplay" [routerLink]="['/candidate-edit', rowData.id]"></mat-row>
+    <mat-row *matRowDef="let rowData; columns: columnsToDisplay" [routerLink]="['/candidate', rowData.id]"></mat-row>
 
   </mat-table>
 

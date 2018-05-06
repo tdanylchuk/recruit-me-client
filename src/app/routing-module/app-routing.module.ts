@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from "@angular/router";
-import {CandidateEditComponent} from "../components/candidate-edit/candidate-edit.component";
+import {CandidateComponent} from "../components/candidate/candidate.component";
 import {CandidatesListComponent} from "../components/candidates-list/candidates-list.component";
 import {LoginComponent} from "../components/login/login.component";
 import {HomeComponent} from "../components/home/home.component";
@@ -31,18 +31,18 @@ const appRoutes: Routes = [
     canActivate: [AuthGuardService]
   },
   {
-    path: 'candidate-list',
+    path: 'candidates',
     component: CandidatesListComponent,
     canActivate: [AuthGuardService]
   },
   {
     path: 'candidate-add',
-    component: CandidateEditComponent,
+    component: CandidateComponent,
     canActivate: [AuthGuardService]
   },
   {
-    path: 'candidate-edit/:id',
-    component: CandidateEditComponent,
+    path: 'candidate/:id',
+    component: CandidateComponent,
     canActivate: [AuthGuardService]
   },
   {
