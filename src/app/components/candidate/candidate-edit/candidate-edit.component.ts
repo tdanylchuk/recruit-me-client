@@ -1,7 +1,8 @@
-import {Component, EventEmitter, Input, OnInit, ViewChild} from '@angular/core';
-import {AbstractControl, NgForm} from "@angular/forms";
+import {Component, EventEmitter, Input, OnInit} from '@angular/core';
+import {NgForm} from "@angular/forms";
 import {CandidatesService} from "../../../shared/candidates/candidates.service";
 import {MatSnackBar} from "@angular/material";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'candidate-edit-component',
@@ -16,7 +17,8 @@ export class CandidateEditComponent implements OnInit {
   dataChangedEmitter: EventEmitter<any>;
 
   constructor(private candidateService: CandidatesService,
-              private snackBar: MatSnackBar) {
+              private snackBar: MatSnackBar,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -25,14 +27,26 @@ export class CandidateEditComponent implements OnInit {
   save(form: NgForm) {
     this.candidateService.save(form).subscribe(result => {
       this.dataChangedEmitter.emit();
-      this.showSnackBar(`Candidate has been updated.`, 1000);
-    }, error => this.showSnackBar(`Cannot update candidate. ${error.message}`, 1000));
+      if (this.candidate.href) {
+        this.showSnackBar(`Candidate has been updated.`);
+      } else {
+        this.showSavedSnackBar(result.id);
+      }
+
+    }, error => this.showSnackBar(`Cannot save candidate. ${error.message}`));
   }
 
-  showSnackBar(message: string, timeout = 2000) {
+  showSnackBar(message: string) {
     this.snackBar.open(message, null, {
-      duration: timeout,
+      duration: 2000,
     });
+  }
+
+  showSavedSnackBar(candidateId) {
+    this.snackBar.open(`Candidate has been saved.`, 'Edit', {
+      duration: 3000,
+    }).onAction()
+      .subscribe(() => this.router.navigate(['/candidate', candidateId]));
   }
 
 }

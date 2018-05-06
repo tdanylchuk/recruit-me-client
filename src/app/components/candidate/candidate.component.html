@@ -10,30 +10,38 @@
   <mat-grid-list cols="{{isMobile() ? 1 : 2}}" rowHeight="410px" gutterSize="13px" class="content-grid">
     <mat-grid-tile>
       <mat-grid-tile-header style="background: #3f51b5"> Edit data:</mat-grid-tile-header>
-      <candidate-edit-component [candidate]="candidate"
-                                [dataChangedEmitter]="dataChangedEmitter">
-      </candidate-edit-component>
+      <div class="mat-grid-tile-content">
+        <candidate-edit-component [candidate]="candidate"
+                                  [dataChangedEmitter]="dataChangedEmitter">
+        </candidate-edit-component>
+      </div>
     </mat-grid-tile>
 
     <mat-grid-tile *ngIf="candidate.id != null">
       <mat-grid-tile-header style="background: #3f51b5">Manage attachments:</mat-grid-tile-header>
-      <attachments-component [dataChangedEmitter]="dataChangedEmitter"
-                             [candidate]="candidate">
-      </attachments-component>
+      <div class="mat-grid-tile-content">
+        <attachments-component [dataChangedEmitter]="dataChangedEmitter"
+                               [candidate]="candidate">
+        </attachments-component>
+      </div>
     </mat-grid-tile>
 
     <mat-grid-tile *ngIf="candidate.id != null">
       <mat-grid-tile-header style="background: #3f51b5">Comments:</mat-grid-tile-header>
-      <comments-component [dataChangedEmitter]="dataChangedEmitter"
-                          [candidate]="candidate">
-      </comments-component>
+      <div class="mat-grid-tile-content">
+        <comments-component [dataChangedEmitter]="dataChangedEmitter"
+                            [candidate]="candidate">
+        </comments-component>
+      </div>
     </mat-grid-tile>
 
     <mat-grid-tile *ngIf="candidate.id != null">
       <mat-grid-tile-header style="background: #3f51b5">Activity feed:</mat-grid-tile-header>
-      <activity-feed-component [dataChangedEmitter]="dataChangedEmitter"
-                               [candidate]="candidate">
-      </activity-feed-component>
+      <div class="mat-grid-tile-content">
+        <activity-feed-component [dataChangedEmitter]="dataChangedEmitter"
+                                 [candidate]="candidate">
+        </activity-feed-component>
+      </div>
     </mat-grid-tile>
 
   </mat-grid-list>

@@ -8,6 +8,7 @@ import {CandidatesListComponent} from './components/candidates-list/candidates-l
 import {
   MatButtonModule,
   MatCardModule,
+  MatDialogModule,
   MatGridListModule,
   MatIconModule,
   MatInputModule,
@@ -41,8 +42,9 @@ import {UserProfileComponent} from './components/user-profile/user-profile.compo
 import {UserService} from "./shared/user/user.service";
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {ErrorInterceptor} from "./shared/http-interceptor/error-interceptor";
-import { VacanciesComponent } from './components/vacancies/vacancies.component';
-import { CandidateEditComponent } from './components/candidate/candidate-edit/candidate-edit.component';
+import {VacanciesComponent} from './components/vacancies/vacancies.component';
+import {CandidateEditComponent} from './components/candidate/candidate-edit/candidate-edit.component';
+import { CandidateAddDialogComponent } from './components/candidates-list/candidate-add-dialog/candidate-add-dialog.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +60,11 @@ import { CandidateEditComponent } from './components/candidate/candidate-edit/ca
     ActivityFeedComponent,
     UserProfileComponent,
     VacanciesComponent,
-    CandidateEditComponent
+    CandidateEditComponent,
+    CandidateAddDialogComponent
+  ],
+  entryComponents: [
+    CandidateAddDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -80,7 +86,8 @@ import { CandidateEditComponent } from './components/candidate/candidate-edit/ca
     MatMenuModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatDialogModule
   ],
   providers: [
     CandidatesService,
