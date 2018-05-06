@@ -19,3 +19,7 @@
 mat-icon {
   cursor: pointer;
 }
+
+mat-card-actions {
+  margin-top: -35px;
+}

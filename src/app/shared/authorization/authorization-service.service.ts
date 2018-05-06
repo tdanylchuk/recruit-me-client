@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import 'rxjs/add/operator/finally';
+
 import {environment} from "../../../environments/environment";
-import {Observable} from "rxjs/Observable";
+import {Observable} from "rxjs";
 import {StorageService} from "../storage/storage.service";
+import {finalize} from 'rxjs/operators';
 
 
 @Injectable()
@@ -19,9 +20,10 @@ export class AuthorizationService {
   private USER_API = environment.apiRoot + '/user';
 
   logout(): Observable<any> {
-    return this.http.post(this.LOGOUT_API, {}).finally(() => {
-      StorageService.deleteUser();
-    });
+    return this.http.post(this.LOGOUT_API, {}).pipe(
+      finalize(() => {
+        StorageService.deleteUser();
+      }));
   }
 
   authenticate(credentials, callback, errorCallback) {

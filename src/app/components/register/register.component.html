@@ -6,14 +6,14 @@
       <mat-card-title>Registration form:</mat-card-title>
       <mat-card-content>
 
-        <mat-form-field class="registration-field">
+        <mat-form-field appearance="outline" class="registration-field">
           <input matInput placeholder="Email"
                  [(ngModel)]="userDetails.email"
                  required email name="email" #email>
           <mat-error *ngIf="!email.valid">Not a valid email</mat-error>
         </mat-form-field>
 
-        <mat-form-field class="registration-field">
+        <mat-form-field appearance="outline" class="registration-field">
           <input matInput
                  [type]="hidePassword ? 'password' : 'text'"
                  required
@@ -24,7 +24,7 @@
           <mat-icon matSuffix (click)="hidePassword = !hidePassword">{{hidePassword ? 'visibility' : 'visibility_off'}}</mat-icon>
         </mat-form-field>
 
-        <mat-form-field class="registration-field">
+        <mat-form-field appearance="outline" class="registration-field">
           <input matInput
                  [type]="hideRepeatPassword ? 'password' : 'text'"
                  #repeatPassword ngModel
@@ -36,7 +36,7 @@
           </mat-icon>
         </mat-form-field>
 
-        <mat-form-field class="registration-field">
+        <mat-form-field appearance="outline" class="registration-field">
           <input matInput
                  required
                  [(ngModel)]="userDetails.firstName"
@@ -45,7 +45,7 @@
                  name="firstName"/>
         </mat-form-field>
 
-        <mat-form-field class="registration-field">
+        <mat-form-field appearance="outline" class="registration-field">
           <input matInput
                  [(ngModel)]="userDetails.lastName"
                  placeholder="Last name"

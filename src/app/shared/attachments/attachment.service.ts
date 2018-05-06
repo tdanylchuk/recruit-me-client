@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import * as FileSaver from "file-saver";
-import {Observable} from "rxjs/Observable";
+import {Observable} from "rxjs";
 import {environment} from "../../../environments/environment";
 
 @Injectable()

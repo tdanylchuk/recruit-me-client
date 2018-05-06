@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Inject, OnDestroy, OnInit} from '@angular/core';
-import {Subscription} from "rxjs/Subscription";
+import {Subscription} from "rxjs";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-candidate-add-dialog',
@@ -14,13 +15,13 @@ export class CandidateAddDialogComponent implements OnInit, OnDestroy {
   sub: Subscription;
 
   constructor(private dialogRef: MatDialogRef<CandidateAddDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any) {
+              private router: Router) {
   }
 
   ngOnInit() {
-    this.sub = this.saveEmitter.subscribe(() => {
+    this.sub = this.saveEmitter.subscribe(candidateId => {
       this.dialogRef.close();
-      this.data.changeEmitter.emit();
+      this.router.navigate(['/candidate', candidateId]);
     });
   }
 

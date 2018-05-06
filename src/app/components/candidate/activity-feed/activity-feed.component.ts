@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnDestroy, OnInit} from '@angular/core';
 import {ActivityService} from "../../../shared/activity/activity.service";
-import {Subscription} from "rxjs/Subscription";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'activity-feed-component',

@@ -16,3 +16,6 @@
   display: flex;
 }
 
+mat-card-actions {
+  margin-top: -35px;
+}

@@ -8,6 +8,7 @@ import {AuthGuardService} from "../shared/authorization/auth-guard.service";
 import {RegisterComponent} from "../components/register/register.component";
 import {UserProfileComponent} from "../components/user-profile/user-profile.component";
 import {VacanciesComponent} from "../components/vacancies/vacancies.component";
+import {MyDashboardComponent} from "../my-dashboard/my-dashboard.component";
 
 const appRoutes: Routes = [
   {

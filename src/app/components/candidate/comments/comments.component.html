@@ -2,7 +2,8 @@
   <mat-list class="comments-list">
     <ng-container *ngFor="let comment of comments">
 
-      <h3 mat-subheader><b>{{comment.author.firstName}} {{comment.author.lastName}}</b>　wrote on {{comment.addedDate | date : "short"}}:</h3>
+      <h3 mat-subheader><b>{{comment.author.firstName}} {{comment.author.lastName}}</b>　wrote on {{comment.addedDate | date : "short"}}:
+      </h3>
 
       <mat-list-item class="comment-section">
         <div class="comment">{{comment.content}}</div>
@@ -20,7 +21,9 @@
         <textarea matInput
                   #commentInput
                   placeholder="Leave a comment"
-                  rows="2"></textarea>
+                  rows="2"
+                  (keyup.enter)="postComment(commentInput.value); commentInput.value=''">
+        </textarea>
     </mat-form-field>
   </mat-grid-tile>
   <mat-grid-tile class="comment-button">

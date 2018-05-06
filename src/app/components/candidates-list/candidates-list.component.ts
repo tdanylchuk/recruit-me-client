@@ -1,24 +1,19 @@
-import {Component, EventEmitter, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CandidatesService} from '../../shared/candidates/candidates.service';
 import {MatDialog, MatSnackBar, MatTableDataSource} from "@angular/material";
 import {AttachmentService} from "../../shared/attachments/attachment.service";
 import {CandidateAddDialogComponent} from "./candidate-add-dialog/candidate-add-dialog.component";
-import {Subscription} from "rxjs/Subscription";
 
 @Component({
   selector: 'app-candidates-list',
   templateUrl: './candidates-list.component.html',
   styleUrls: ['./candidates-list.component.css']
 })
-export class CandidatesListComponent implements OnInit, OnDestroy {
+export class CandidatesListComponent implements OnInit {
 
   candidatesDS = new MatTableDataSource();
 
   columnsToDisplay: Array<any> = ["id", "firstName", "lastName", "email", "position", "attachments", "operations"];
-
-  changeEmitter = new EventEmitter<any>();
-
-  sub: Subscription;
 
   constructor(private candidatesService: CandidatesService,
               private attachmentService: AttachmentService,
@@ -28,11 +23,6 @@ export class CandidatesListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.init();
-    this.sub = this.changeEmitter.subscribe(() => this.init());
-  }
-
-  ngOnDestroy(): void {
-    this.sub.unsubscribe();
   }
 
   private init() {
@@ -67,6 +57,6 @@ export class CandidatesListComponent implements OnInit, OnDestroy {
   }
 
   openDialog(): void {
-    this.dialog.open(CandidateAddDialogComponent, {data: {changeEmitter: this.changeEmitter}});
+    this.dialog.open(CandidateAddDialogComponent, {});
   }
 }

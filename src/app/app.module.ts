@@ -45,6 +45,7 @@ import {ErrorInterceptor} from "./shared/http-interceptor/error-interceptor";
 import {VacanciesComponent} from './components/vacancies/vacancies.component';
 import {CandidateEditComponent} from './components/candidate/candidate-edit/candidate-edit.component';
 import { CandidateAddDialogComponent } from './components/candidates-list/candidate-add-dialog/candidate-add-dialog.component';
+import { MyDashboardComponent } from './my-dashboard/my-dashboard.component';
 
 @NgModule({
   declarations: [

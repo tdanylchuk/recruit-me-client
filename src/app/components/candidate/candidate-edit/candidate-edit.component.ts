@@ -26,13 +26,8 @@ export class CandidateEditComponent implements OnInit {
 
   save(form: NgForm) {
     this.candidateService.save(form).subscribe(result => {
-      this.dataChangedEmitter.emit();
-      if (this.candidate.href) {
-        this.showSnackBar(`Candidate has been updated.`);
-      } else {
-        this.showSavedSnackBar(result.id);
-      }
-
+      this.dataChangedEmitter.emit(result.id);
+      this.showSnackBar(`Candidate has been saved.`);
     }, error => this.showSnackBar(`Cannot save candidate. ${error.message}`));
   }
 
@@ -40,13 +35,6 @@ export class CandidateEditComponent implements OnInit {
     this.snackBar.open(message, null, {
       duration: 2000,
     });
-  }
-
-  showSavedSnackBar(candidateId) {
-    this.snackBar.open(`Candidate has been saved.`, 'Edit', {
-      duration: 3000,
-    }).onAction()
-      .subscribe(() => this.router.navigate(['/candidate', candidateId]));
   }
 
 }

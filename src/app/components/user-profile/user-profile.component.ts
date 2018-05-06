@@ -1,13 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {Subscription} from "rxjs/Subscription";
+import {of, Subscription} from 'rxjs';
 import {UserService} from "../../shared/user/user.service";
 import {ActivatedRoute} from "@angular/router";
 import {StorageService} from "../../shared/storage/storage.service";
 import {ActivityService} from "../../shared/activity/activity.service";
-import 'rxjs/add/operator/mergeMap';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/observable/of';
-import {Observable} from "rxjs/Observable";
+import {flatMap, map} from 'rxjs/operators';
 
 @Component({
   selector: 'user-profile',
@@ -16,7 +13,7 @@ import {Observable} from "rxjs/Observable";
 })
 export class UserProfileComponent implements OnInit {
 
-  user: any;
+  user: any = {};
   sub: Subscription;
   activities: any;
 
@@ -26,18 +23,22 @@ export class UserProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.sub = this.route.params.map(params => {
-      return params['id'];
-    }).flatMap(userId => {
-      if (userId) {
-        return this.userService.get(userId);
-      } else {
-        return Observable.of(StorageService.getUser());
-      }
-    }).flatMap(user => {
-      this.user = user;
-      return this.activityService.getByAuthor(this.user.id);
-    }).subscribe(data => {
+    this.sub = this.route.params.pipe(
+      map(params => {
+        return params['id'];
+      }),
+      flatMap(userId => {
+        if (userId) {
+          return this.userService.get(userId);
+        } else {
+          return of(StorageService.getUser());
+        }
+      }),
+      flatMap(user => {
+        this.user = user;
+        return this.activityService.getByAuthor(this.user.id);
+      })
+    ).subscribe(data => {
       this.activities = data._embedded.activityEntities;
     });
   }
