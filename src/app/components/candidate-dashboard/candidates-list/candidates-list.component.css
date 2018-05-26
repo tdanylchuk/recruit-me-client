@@ -2,19 +2,6 @@
   margin: 4px;
 }
 
-.add-button{
-  margin-top: 1px;
-  height: 40px;
-  width: 100%;
-  bottom: 0;
-  left: 0;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-self: flex-end;
-  position: absolute;
-}
-
 .table-container {
   width: 100%;
   left: 0;
@@ -22,7 +9,7 @@
   flex-direction: column;
   position: absolute;
   top:0;
-  bottom: 40px;
+  bottom: 0;
   overflow: auto;
 }
 
