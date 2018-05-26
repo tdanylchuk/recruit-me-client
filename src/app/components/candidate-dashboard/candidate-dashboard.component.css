@@ -2,6 +2,11 @@
   margin: 20px;
 }
 
+.add-candidate-component {
+  position: absolute;
+  top: 150px
+}
+
 .mat-grid-tile-content {
   top: 48px;
   position: absolute;
@@ -12,8 +17,4 @@
 mat-grid-tile {
   background: white;
   box-shadow: 5px 5px 10px #3f51b5;
-}
-
-.dashboard-card-content {
-  text-align: center;
 }

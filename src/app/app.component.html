@@ -1,22 +1,33 @@
 <div class="page-wrap">
   <header role="banner">
     <mat-toolbar color="primary">
-      <button *ngIf="authorizationService.isAuthenticated()"
-              type="button"
-              mat-icon-button
-              (click)="sidenav.toggle()"
-              title="Open menu">
-        <mat-icon>menu</mat-icon>
+      <button class="toolbar-button"
+              fxFlexAlign="stretch"
+              *ngIf="authorizationService.isAuthenticated()"
+              [routerLink]="['/home']" routerLinkActive="active"
+              mat-button>Home
       </button>
-      <span style="margin-left: 20px">Welcome to RecruitMe </span>
+      <button class="toolbar-button"
+              fxFlexAlign="stretch"
+              *ngIf="authorizationService.isAuthenticated()"
+              [routerLink]="['/candidates']" routerLinkActive="active"
+              mat-button>Candidates
+      </button>
+      <!--<button class="toolbar-button"-->
+              <!--fxFlexAlign="stretch"-->
+              <!--*ngIf="authorizationService.isAuthenticated()"-->
+              <!--[routerLink]="['/vacancies']" routerLinkActive="active"-->
+              <!--mat-button>Vacancies-->
+      <!--</button>-->
+
       <span class="toolbar-spacer"></span>
       <button class="menu-button" mat-icon-button [matMenuTriggerFor]="menu">
-        <mat-icon>more_vert</mat-icon>
+        <mat-icon>menu</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
         <ng-container *ngIf="authorizationService.isAuthenticated()">
           <button mat-menu-item [routerLink]="['profile']">
-            <mat-icon>settings</mat-icon>
+            <mat-icon>account_box</mat-icon>
             <span>Profile</span>
           </button>
           <button mat-menu-item (click)="logout()">
@@ -38,16 +49,7 @@
     </mat-toolbar>
   </header>
   <main class="content">
-    <mat-sidenav-container class="all-wrap">
-      <mat-sidenav #sidenav mode="push">
-        <mat-list (click)="sidenav.close()">
-          <mat-list-item [routerLink]="['/home']" routerLinkActive="active"> Home</mat-list-item>
-          <mat-list-item [routerLink]="['/candidates']" routerLinkActive="active"> Candidates</mat-list-item>
-          <mat-list-item [routerLink]="['/vacancies']" routerLinkActive="active"> Vacancies</mat-list-item>
-        </mat-list>
-      </mat-sidenav>
-      <router-outlet></router-outlet>
-    </mat-sidenav-container>
+    <router-outlet></router-outlet>
   </main>
   <footer>
     <mat-toolbar color="primary" class="footer">

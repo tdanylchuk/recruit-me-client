@@ -15,12 +15,6 @@
 main {
   display: flex;
   flex-direction: column;
-
-  /*> *:not(router-outlet) {*/
-  /*flex: 1;*/
-  /*display: block;*/
-  /*}*/
-
 }
 
 .footer {
@@ -47,4 +41,8 @@ mat-list-item:hover {
 
 .toolbar-spacer {
   flex: 1 1 auto;
+}
+
+.toolbar-button {
+  font-size: large;
 }
