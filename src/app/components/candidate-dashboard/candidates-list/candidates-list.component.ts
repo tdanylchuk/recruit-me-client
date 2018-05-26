@@ -1,11 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {CandidatesService} from '../../shared/candidates/candidates.service';
-import {MatDialog, MatSnackBar, MatTableDataSource} from "@angular/material";
-import {AttachmentService} from "../../shared/attachments/attachment.service";
-import {CandidateAddDialogComponent} from "./candidate-add-dialog/candidate-add-dialog.component";
+import {CandidatesService} from '../../../shared/candidates/candidates.service';
+import {MatSnackBar, MatTableDataSource} from "@angular/material";
+import {AttachmentService} from "../../../shared/attachments/attachment.service";
 
 @Component({
-  selector: 'app-candidates-list',
+  selector: 'candidates-list-component',
   templateUrl: './candidates-list.component.html',
   styleUrls: ['./candidates-list.component.css']
 })
@@ -13,12 +12,11 @@ export class CandidatesListComponent implements OnInit {
 
   candidatesDS = new MatTableDataSource();
 
-  columnsToDisplay: Array<any> = ["id", "firstName", "lastName", "email", "position", "attachments", "operations"];
+  columnsToDisplay: Array<any> = ["id", "name", "email", "position"];
 
   constructor(private candidatesService: CandidatesService,
               private attachmentService: AttachmentService,
-              private snackBar: MatSnackBar,
-              public dialog: MatDialog) {
+              private snackBar: MatSnackBar) {
   }
 
   ngOnInit() {
@@ -29,11 +27,6 @@ export class CandidatesListComponent implements OnInit {
     this.candidatesService.getAll().subscribe(data => {
       this.candidatesDS.data = data._embedded.candidateEntities;
     });
-  }
-
-  downloadFile(attachmentId: any) {
-    console.info("Downloading file - " + attachmentId);
-    this.attachmentService.download(attachmentId);
   }
 
   deleteUser(candidate: any) {
@@ -54,9 +47,5 @@ export class CandidatesListComponent implements OnInit {
     this.snackBar.open(message, null, {
       duration: 1000,
     });
-  }
-
-  openDialog(): void {
-    this.dialog.open(CandidateAddDialogComponent, {});
   }
 }

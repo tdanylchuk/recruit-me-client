@@ -1,22 +1,21 @@
-import {Component, EventEmitter, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {CandidatesService} from "../../../shared/candidates/candidates.service";
+import {Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material";
 
 @Component({
-  selector: 'candidate-edit-component',
-  templateUrl: './candidate-edit.component.html',
-  styleUrls: ['./candidate-edit.component.css']
+  selector: 'candidate-add-component',
+  templateUrl: './candidate-add.component.html',
+  styleUrls: ['./candidate-add.component.css']
 })
-export class CandidateEditComponent implements OnInit {
+export class CandidateAddComponent implements OnInit {
 
-  @Input('candidate')
-  candidate: any;
-  @Input('dataChangedEmitter')
-  dataChangedEmitter: EventEmitter<any>;
+  candidate: any = {};
 
   constructor(private candidateService: CandidatesService,
-              private snackBar: MatSnackBar) {
+              private snackBar: MatSnackBar,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -24,8 +23,8 @@ export class CandidateEditComponent implements OnInit {
 
   save(form: NgForm) {
     this.candidateService.save(form).subscribe(result => {
-      this.dataChangedEmitter.emit(result.id);
       this.showSnackBar(`Candidate has been saved.`);
+      this.router.navigate(['/candidate', result.id])
     }, error => this.showSnackBar(`Cannot save candidate. ${error.message}`));
   }
 
@@ -34,5 +33,4 @@ export class CandidateEditComponent implements OnInit {
       duration: 2000,
     });
   }
-
 }

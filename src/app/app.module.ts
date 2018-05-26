@@ -4,11 +4,12 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 
 import {AppComponent} from './app.component';
 import {CandidatesService} from "./shared/candidates/candidates.service";
-import {CandidatesListComponent} from './components/candidates-list/candidates-list.component';
+import {CandidatesListComponent} from './components/candidate-dashboard/candidates-list/candidates-list.component';
 import {
   MatButtonModule,
   MatCardModule,
   MatDialogModule,
+  MatExpansionModule,
   MatGridListModule,
   MatIconModule,
   MatInputModule,
@@ -44,8 +45,8 @@ import {FlexLayoutModule} from "@angular/flex-layout";
 import {ErrorInterceptor} from "./shared/http-interceptor/error-interceptor";
 import {VacanciesComponent} from './components/vacancies/vacancies.component';
 import {CandidateEditComponent} from './components/candidate/candidate-edit/candidate-edit.component';
-import { CandidateAddDialogComponent } from './components/candidates-list/candidate-add-dialog/candidate-add-dialog.component';
-import { MyDashboardComponent } from './my-dashboard/my-dashboard.component';
+import {CandidateDashboardComponent} from './components/candidate-dashboard/candidate-dashboard.component';
+import {CandidateAddComponent} from './components/candidate-dashboard/candidate-add/candidate-add.component';
 
 @NgModule({
   declarations: [
@@ -62,10 +63,8 @@ import { MyDashboardComponent } from './my-dashboard/my-dashboard.component';
     UserProfileComponent,
     VacanciesComponent,
     CandidateEditComponent,
-    CandidateAddDialogComponent
-  ],
-  entryComponents: [
-    CandidateAddDialogComponent
+    CandidateDashboardComponent,
+    CandidateAddComponent
   ],
   imports: [
     BrowserModule,
@@ -88,7 +87,8 @@ import { MyDashboardComponent } from './my-dashboard/my-dashboard.component';
     AppRoutingModule,
     ReactiveFormsModule,
     FlexLayoutModule,
-    MatDialogModule
+    MatDialogModule,
+    MatExpansionModule
   ],
   providers: [
     CandidatesService,

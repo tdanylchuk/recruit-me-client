@@ -5,8 +5,11 @@
 }
 
 .content {
-  width: available;
-  height: available;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 .save-button {
@@ -18,5 +21,5 @@
 mat-form-field {
   flex-direction: column;
   margin-left: auto;
-  margin-right: auto;
+  margin-right: 10px;
 }

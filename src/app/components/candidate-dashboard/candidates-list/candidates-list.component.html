@@ -1,0 +1,38 @@
+<div class="table-container mat-elevation-z8">
+  <div class="filter-header">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+  </div>
+
+  <mat-table #table [dataSource]="candidatesDS">
+
+    <ng-container matColumnDef="id">
+      <mat-header-cell class="id-column" *matHeaderCellDef>ID</mat-header-cell>
+      <mat-cell class="id-column" *matCellDef="let candidate">{{candidate.id}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef>NAME</mat-header-cell>
+      <mat-cell *matCellDef="let candidate">{{candidate.firstName}} {{candidate.lastName}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef>EMAIL</mat-header-cell>
+      <mat-cell *matCellDef="let candidate">{{candidate.email}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="position">
+      <mat-header-cell *matHeaderCellDef>POSITION</mat-header-cell>
+      <mat-cell *matCellDef="let candidate">{{candidate.position}}</mat-cell>
+    </ng-container>
+
+    <mat-header-row style="position: sticky; top: 0; background: white" *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+
+    <mat-row *matRowDef="let rowData; columns: columnsToDisplay" [routerLink]="['/candidate', rowData.id]"></mat-row>
+
+  </mat-table>
+
+</div>
+
+<a mat-raised-button color="accent" class="add-button" (click)="openDialog()">
+  <mat-icon>add</mat-icon>
+</a>
+

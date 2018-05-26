@@ -1,0 +1,29 @@
+<div>
+  <form #candidateForm="ngForm" (ngSubmit)="candidateForm.form.markAsPristine(); save(candidateForm.value);">
+
+    <mat-card class="content">
+
+      <mat-card-content>
+        <mat-form-field appearance="outline">
+          <mat-label>First name:</mat-label>
+          <input matInput placeholder="First name" [(ngModel)]="candidate.firstName"
+                 required name="firstName" #firstName>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Last name:</mat-label>
+          <input matInput placeholder="Last name" [(ngModel)]="candidate.lastName"
+                 required name="lastName" #lastName>
+        </mat-form-field>
+
+      </mat-card-content>
+
+      <mat-card-actions align="right">
+        <button class="save-button" mat-raised-button color="primary" type="submit"
+                [disabled]="!candidateForm.valid || candidateForm.pristine">Save
+        </button>
+      </mat-card-actions>
+
+    </mat-card>
+  </form>
+
+</div>

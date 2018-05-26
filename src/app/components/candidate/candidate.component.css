@@ -8,7 +8,7 @@ button {
 }
 
 .content-grid {
-  margin: 10px;
+  margin: 15px;
 }
 
 mat-grid-tile {
@@ -20,7 +20,7 @@ mat-grid-tile {
   top: 48px;
   position: absolute;
   width: 100%;
-  height: 362px;
+  bottom: 0;
 }
 
 .header {
