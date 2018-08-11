@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import * as FileSaver from "file-saver";
 import {Observable} from "rxjs";
 import {environment} from "../../../environments/environment";
+import {TargetParamUtils} from "../target.param.utils";
 
 @Injectable()
 export class AttachmentService {
@@ -23,7 +24,7 @@ export class AttachmentService {
       });
   }
 
-  upload(files): Observable<any> {
+  upload(files, targetId: number, targetType: string): Observable<any> {
     let formData: FormData = new FormData();
 
     for (let i = 0; i < files.length; i++) {
@@ -33,16 +34,22 @@ export class AttachmentService {
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'multipart/form-data');
     headers.append('Accept', 'application/json');
-    let options = {headers: headers};
-    return this.http.post(this.UPLOAD_ATTACHMENTS_API, formData, options);
+    let params = TargetParamUtils.getParams(targetId, targetType);
+
+    return this.http.post(`${this.UPLOAD_ATTACHMENTS_API}`, formData,
+      {
+        headers: headers,
+        params: params
+      });
   }
 
   delete(attachmentId: any): Observable<Object> {
     return this.http.delete(`${this.ATTACHMENTS_API}/${attachmentId}`);
   }
 
-  getAttachments(targetId: any) : Observable<any> {
-    return this.http.get(`${this.ATTACHMENTS_API}/search/findByCandidateId?candidateId=${targetId}`)
+  getAttachments(targetId: number, targetType: string): Observable<any> {
+    let params = TargetParamUtils.getParams(targetId, targetType);
+    return this.http.get(`${this.ATTACHMENTS_API}/search/findByTargetIdAndTargetType`, {params: params});
   }
 
 }

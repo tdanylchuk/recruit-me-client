@@ -13,12 +13,12 @@
               [routerLink]="['/candidates']" routerLinkActive="active"
               mat-button>Candidates
       </button>
-      <!--<button class="toolbar-button"-->
-              <!--fxFlexAlign="stretch"-->
-              <!--*ngIf="authorizationService.isAuthenticated()"-->
-              <!--[routerLink]="['/vacancies']" routerLinkActive="active"-->
-              <!--mat-button>Vacancies-->
-      <!--</button>-->
+      <button class="toolbar-button"
+              fxFlexAlign="stretch"
+              *ngIf="authorizationService.isAuthenticated()"
+              [routerLink]="['/employees']" routerLinkActive="active"
+              mat-button>Employees
+      </button>
 
       <span class="toolbar-spacer"></span>
       <button class="menu-button" mat-icon-button [matMenuTriggerFor]="menu">

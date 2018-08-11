@@ -1,38 +1,38 @@
 import {Component, EventEmitter, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {ActivatedRoute, Router} from '@angular/router';
-import {CandidatesService} from '../../shared/candidates/candidates.service';
+import {EmployeeService} from "../../shared/employee/employee.service";
 import {TargetType} from "../../shared/target.type";
 
 @Component({
-  selector: 'candidate-component',
-  templateUrl: './candidate.component.html',
-  styleUrls: ['./candidate.component.css']
+  selector: 'employee-component',
+  templateUrl: './employee.component.html',
+  styleUrls: ['./employee.component.css']
 })
-export class CandidateComponent implements OnInit, OnDestroy {
+export class EmployeeComponent implements OnInit, OnDestroy {
 
-  targetType: string = TargetType[TargetType.CANDIDATE];
+  targetType: string = TargetType[TargetType.EMPLOYEE];
 
-  candidate: any = {};
+  employee: any = {};
   sub: Subscription;
 
   dataChangedEmitter = new EventEmitter<any>();
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private candidateService: CandidatesService) {
+              private employeeService: EmployeeService) {
   }
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
-      let candidateId = params['id'];
-      if (candidateId) {
-        this.candidateService.get(candidateId).subscribe((candidate: any) => {
-          if (candidate) {
-            this.candidate = candidate;
-            this.candidate.href = candidate._links.self.href;
+      let employeeId = params['id'];
+      if (employeeId) {
+        this.employeeService.get(employeeId).subscribe((employee: any) => {
+          if (employee) {
+            this.employee = employee;
+            this.employee.href = employee._links.self.href;
           } else {
-            console.log(`Candidate with id '${candidateId}' not found, returning to list`);
+            console.log(`employee with id '${employeeId}' not found, returning to list`);
             this.gotoList();
           }
         });
@@ -45,13 +45,13 @@ export class CandidateComponent implements OnInit, OnDestroy {
   }
 
   gotoList() {
-    this.router.navigate(['/candidates']);
+    this.router.navigate(['/employees']);
   }
 
   isMobile(): boolean {
     const userAgent = navigator.userAgent;
     const vendor = navigator.vendor;
-    return CandidateComponent.checkIsMobile(userAgent) || CandidateComponent.checkIsMobile(vendor)
+    return EmployeeComponent.checkIsMobile(userAgent) || EmployeeComponent.checkIsMobile(vendor)
   }
 
   static checkIsMobile(a: string): boolean {

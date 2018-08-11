@@ -1,0 +1,44 @@
+<div>
+  <form #employeeForm="ngForm" (ngSubmit)="employeeForm.form.markAsPristine(); save(employeeForm.value);">
+
+    <mat-card class="content">
+
+      <mat-card-content>
+        <input type="hidden" name="href" [(ngModel)]="employee.href">
+
+        <mat-form-field appearance="outline">
+          <mat-label>First name:</mat-label>
+          <input matInput placeholder="First name" [(ngModel)]="employee.firstName"
+                 required name="firstName" #firstName>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Last name:</mat-label>
+          <input matInput placeholder="Last name" [(ngModel)]="employee.lastName"
+                 required name="lastName" #lastName>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Email:</mat-label>
+          <input matInput placeholder="Email" [(ngModel)]="employee.email"
+                 required email name="email" #email>
+          <mat-error *ngIf="!email.valid">Not a valid email</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Position:</mat-label>
+          <input matInput placeholder="Position" [(ngModel)]="employee.position"
+                 required name="position" #position>
+        </mat-form-field>
+
+      </mat-card-content>
+
+      <mat-card-actions align="right">
+        <button class="save-button" mat-raised-button color="primary" type="submit"
+                [disabled]="!employeeForm.valid || employeeForm.pristine">Save
+        </button>
+      </mat-card-actions>
+
+    </mat-card>
+  </form>
+
+</div>

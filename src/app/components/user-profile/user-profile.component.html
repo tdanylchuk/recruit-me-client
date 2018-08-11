@@ -26,7 +26,7 @@
       <mat-list-item *ngFor="let activity of activities">
         <mat-icon mat-list-icon>{{activityService.getIcon(activity.type)}}</mat-icon>
         <h4 mat-line>{{activityService.getMessage(activity.type)}} <a
-          [routerLink]="['/'+ activityService.getTargetEndpoint(activity.type), activity.targetId]">{{activityService.getTargetName(activity.type)}}</a></h4>
+          [routerLink]="['/'+ activityService.getTargetEndpoint(activity.targetType), activity.targetId]">{{activityService.getTargetName(activity.targetType)}}</a></h4>
         <p mat-line> {{activity.addedDate | date : "short"}} </p>
       </mat-list-item>
     </mat-list>

@@ -1,7 +1,6 @@
 import {Component, EventEmitter, Input, OnInit} from '@angular/core';
 import {MatSnackBar, MatTableDataSource} from "@angular/material";
-import {AttachmentService} from "../../../shared/attachments/attachment.service";
-import {CandidatesService} from "../../../shared/candidates/candidates.service";
+import {AttachmentService} from "../../shared/attachments/attachment.service";
 
 @Component({
   selector: 'attachments-component',
@@ -10,21 +9,21 @@ import {CandidatesService} from "../../../shared/candidates/candidates.service";
 })
 export class AttachmentsComponent implements OnInit {
 
-  @Input('candidate')
-  candidate: any;
-
+  @Input('targetId')
+  targetId: number;
+  @Input('targetType')
+  targetType: string;
   @Input('dataChangedEmitter')
   dataChangedEmitter: EventEmitter<any>;
 
   attachmentsDS = new MatTableDataSource();
 
   constructor(public attachmentService: AttachmentService,
-              private snackBar: MatSnackBar,
-              private candidateService: CandidatesService) {
+              private snackBar: MatSnackBar) {
   }
 
   ngOnInit() {
-    this.attachmentService.getAttachments(this.candidate.id).subscribe(data => {
+    this.attachmentService.getAttachments(this.targetId, this.targetType).subscribe(data => {
       this.attachmentsDS.data = data._embedded.attachmentEntities;
     });
   }
@@ -40,18 +39,13 @@ export class AttachmentsComponent implements OnInit {
   }
 
   uploadAttachment(event) {
-    let candidateId = this.candidate.id;
     let files = event.dataTransfer ? event.dataTransfer.files : event.target.files;
-    this.attachmentService.upload(files).subscribe(response => {
-      this.candidateService.addAttachments(candidateId, response).subscribe(() => {
-        this.refreshTable();
-        this.showSnackBar(`[${files.length}] files has been uploaded.`);
-        this.dataChangedEmitter.emit();
-      }, error => {
-        this.showSnackBar(`Failed to assign [${files.length}] files to candidate[${candidateId}].`)
-      });
+    this.attachmentService.upload(files, this.targetId, this.targetType).subscribe(response => {
+      this.refreshTable();
+      this.showSnackBar(`[${files.length}] files has been uploaded.`);
+      this.dataChangedEmitter.emit();
     }, error => {
-      this.showSnackBar(`Failed to upload [${files.length}] files to candidate[${candidateId}].`);
+      this.showSnackBar(`Failed to upload [${files.length}] files for [${this.targetId} - ${this.targetType}].`);
     });
   }
 

@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnDestroy, OnInit} from '@angular/core';
-import {ActivityService} from "../../../shared/activity/activity.service";
+import {ActivityService} from "../../shared/activity/activity.service";
 import {Subscription} from "rxjs";
+import {TargetType} from "../../shared/target.type";
 
 @Component({
   selector: 'activity-feed-component',
@@ -9,8 +10,10 @@ import {Subscription} from "rxjs";
 })
 export class ActivityFeedComponent implements OnInit, OnDestroy {
 
-  @Input('candidate')
-  candidate: any;
+  @Input('targetId')
+  targetId: number;
+  @Input('targetType')
+  targetType: string;
 
   @Input('dataChangedEmitter')
   dataChangedEmitter: EventEmitter<any>;
@@ -34,7 +37,7 @@ export class ActivityFeedComponent implements OnInit, OnDestroy {
   }
 
   private init() {
-    this.activityService.getByTarget(this.candidate.id).subscribe(data => {
+    this.activityService.getByTarget(this.targetId, this.targetType).subscribe(data => {
       this.activities = data._embedded.activityEntities;
     });
   }

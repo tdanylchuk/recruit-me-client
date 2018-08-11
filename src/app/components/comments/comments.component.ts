@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit} from '@angular/core';
-import {CommentService} from "../../../shared/comment/comment.service";
-import {StorageService} from "../../../shared/storage/storage.service";
+import {CommentService} from "../../shared/comment/comment.service";
+import {StorageService} from "../../shared/storage/storage.service";
+import {TargetType} from "../../shared/target.type";
 
 @Component({
   selector: 'comments-component',
@@ -9,8 +10,10 @@ import {StorageService} from "../../../shared/storage/storage.service";
 })
 export class CommentsComponent implements OnInit {
 
-  @Input('candidate')
-  candidate: any;
+  @Input('targetId')
+  targetId: number;
+  @Input('targetType')
+  targetType: string;
 
   @Input('dataChangedEmitter')
   dataChangedEmitter: EventEmitter<any>;
@@ -21,7 +24,7 @@ export class CommentsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.commentService.getCommentsByTarget(this.candidate.id).subscribe(data => {
+    this.commentService.getCommentsByTarget(this.targetId, this.targetType).subscribe(data => {
       this.comments = data._embedded.commentEntities;
     });
   }
@@ -30,7 +33,8 @@ export class CommentsComponent implements OnInit {
     let comment = {
       content: content,
       authorId: StorageService.getUser().id,
-      targetId: this.candidate.id
+      targetId: this.targetId,
+      targetType: this.targetType
     };
     this.commentService.postComment(comment).subscribe(() => {
       this.ngOnInit();

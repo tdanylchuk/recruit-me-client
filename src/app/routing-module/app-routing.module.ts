@@ -8,6 +8,8 @@ import {RegisterComponent} from "../components/register/register.component";
 import {UserProfileComponent} from "../components/user-profile/user-profile.component";
 import {VacanciesComponent} from "../components/vacancies/vacancies.component";
 import {CandidateDashboardComponent} from "../components/candidate-dashboard/candidate-dashboard.component";
+import {EmployeeDashboardComponent} from "../components/employee-dashboard/employee-dashboard.component";
+import {EmployeeComponent} from "../components/employee/employee.component";
 
 const appRoutes: Routes = [
   {
@@ -36,13 +38,18 @@ const appRoutes: Routes = [
     canActivate: [AuthGuardService]
   },
   {
-    path: 'candidate-add',
+    path: 'candidate/:id',
     component: CandidateComponent,
     canActivate: [AuthGuardService]
   },
   {
-    path: 'candidate/:id',
-    component: CandidateComponent,
+    path: 'employees',
+    component: EmployeeDashboardComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'employee/:id',
+    component: EmployeeComponent,
     canActivate: [AuthGuardService]
   },
   {

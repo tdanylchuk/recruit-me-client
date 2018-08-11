@@ -1,0 +1,18 @@
+<div class="grid-container">
+  <h1 class="mat-h1">Employee Dashboard</h1>
+  <mat-grid-list cols="2" rowHeight="750px" gutterSize="13px" class="content-grid">
+
+    <mat-grid-tile>
+      <mat-grid-tile-header style="background: #3f51b5"> Add new employee:</mat-grid-tile-header>
+      <div class="add-employee-component">
+        <employee-add-component></employee-add-component>
+      </div>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+      <mat-grid-tile-header style="background: #3f51b5"> Employee list:</mat-grid-tile-header>
+      <employees-list-component class="mat-grid-tile-content"></employees-list-component>
+    </mat-grid-tile>
+
+  </mat-grid-list>
+</div>

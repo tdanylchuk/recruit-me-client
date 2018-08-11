@@ -2,58 +2,62 @@ import {Injectable} from '@angular/core';
 import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
+import {TargetParamUtils} from "../target.param.utils";
 
 @Injectable()
 export class ActivityService {
 
   private ACTIVITY_API = environment.apiRoot + '/activities';
 
-  private typeMapping = new Map([
-    ['CANDIDATE_COMMENT_ADDED',
+  private activityTypeMapping = new Map([
+    ['COMMENT_ADDED',
       {
         message: 'added comment for',
-        targetEndpoint: '/candidate',
-        targetName : 'candidate',
         icon: 'send'
       }
     ],
-    ['CANDIDATE_ADDED',
+    ['ADDED',
       {
         message: 'added',
-        targetEndpoint: '/candidate',
-        targetName : 'candidate',
         icon: 'person_add'
       }
     ],
-    ['CANDIDATE_EDITED', {
+    ['EDITED', {
       message: 'edited',
-      targetEndpoint: '/candidate',
-      targetName : 'candidate',
       icon: 'edit'
     }
     ],
-    ['CANDIDATE_DELETED',
+    ['DELETED',
       {
         message: 'deleted',
-        targetEndpoint: '/candidate',
-        targetName : 'candidate',
         icon: 'delete'
       }
     ],
-    ['CANDIDATE_ATTACHMENT_ADDED',
+    ['ATTACHMENT_ADDED',
       {
         message: 'added attachment for',
-        targetEndpoint: '/candidate',
-        targetName : 'candidate',
         icon: 'attach_file'
       }
     ],
-    ['CANDIDATE_ATTACHMENT_DELETED',
+    ['ATTACHMENT_DELETED',
       {
         message: 'deleted attachment for',
-        targetEndpoint: '/candidate',
-        targetName : 'candidate',
         icon: 'delete'
+      }
+    ]
+  ]);
+
+  private targetTypeMapping = new Map([
+    ['CANDIDATE',
+      {
+        targetEndpoint: '/candidate',
+        targetName: 'candidate',
+      }
+    ],
+    ['EMPLOYEE',
+      {
+        targetEndpoint: '/employee',
+        targetName: 'employee',
       }
     ]
   ]);
@@ -61,8 +65,9 @@ export class ActivityService {
   constructor(private http: HttpClient) {
   }
 
-  getByTarget(targetId): Observable<any> {
-    return this.http.get(`${this.ACTIVITY_API}/search/findByTargetId?targetId=${targetId}`)
+  getByTarget(targetId: number, targetType: string): Observable<any> {
+    let params = TargetParamUtils.getParams(targetId, targetType);
+    return this.http.get(`${this.ACTIVITY_API}/search/findByTargetIdAndTargetType?`, {params: params})
   }
 
   getByAuthor(userId): Observable<any> {
@@ -70,27 +75,31 @@ export class ActivityService {
   }
 
   getMessage(activityType: string): string {
-    let props = this.getMapping(activityType);
+    let props = this.getActivityMapping(activityType);
     return props == undefined ? "undefined" : props.message;
   }
 
   getIcon(activityType: string): string {
-    let props = this.getMapping(activityType);
+    let props = this.getActivityMapping(activityType);
     return props == undefined ? "wb_sunny" : props.icon;
   }
 
-  getTargetEndpoint(activityType: string) {
-    let props = this.getMapping(activityType);
+  getTargetEndpoint(targetType: string) {
+    let props = this.getTargetMapping(targetType);
     return props.targetEndpoint;
   }
 
-  getTargetName(activityType: string) {
-    let props = this.getMapping(activityType);
+  getTargetName(targetType: string) {
+    let props = this.getTargetMapping(targetType);
     return props.targetName;
   }
 
-  private getMapping(type: string): any {
-    return this.typeMapping.get(type);
+  private getActivityMapping(type: string): any {
+    return this.activityTypeMapping.get(type);
+  }
+
+  private getTargetMapping(type: string): any {
+    return this.targetTypeMapping.get(type);
   }
 
 }

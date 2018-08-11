@@ -1,8 +1,8 @@
 <div>
 
   <div class="header">
-    <h2 class="header-title">Candidate details</h2>
-    <button class="action-button" matSuffix mat-raised-button color="secondary" routerLink="/candidates"
+    <h2 class="header-title">Employee details</h2>
+    <button class="action-button" matSuffix mat-raised-button color="secondary" routerLink="/employees"
             type="button">Back to list
     </button>
   </div>
@@ -11,37 +11,27 @@
     <mat-grid-tile>
       <mat-grid-tile-header style="background: #3f51b5"> Edit data:</mat-grid-tile-header>
       <div class="mat-grid-tile-content">
-        <candidate-edit-component [candidate]="candidate"
+        <employee-edit-component [employee]="employee"
                                   [dataChangedEmitter]="dataChangedEmitter">
-        </candidate-edit-component>
+        </employee-edit-component>
       </div>
     </mat-grid-tile>
 
-    <mat-grid-tile *ngIf="candidate.id != null">
+    <mat-grid-tile *ngIf="employee.id != null">
       <mat-grid-tile-header style="background: #3f51b5">Manage attachments:</mat-grid-tile-header>
       <div class="mat-grid-tile-content">
         <attachments-component [dataChangedEmitter]="dataChangedEmitter"
-                               [targetId]="candidate.id"
+                               [targetId]="employee.id"
                                [targetType]="targetType">
         </attachments-component>
       </div>
     </mat-grid-tile>
 
-    <mat-grid-tile *ngIf="candidate.id != null">
-      <mat-grid-tile-header style="background: #3f51b5">Comments:</mat-grid-tile-header>
-      <div class="mat-grid-tile-content">
-        <comments-component [dataChangedEmitter]="dataChangedEmitter"
-                            [targetId]="candidate.id"
-                            [targetType]="targetType">
-        </comments-component>
-      </div>
-    </mat-grid-tile>
-
-    <mat-grid-tile *ngIf="candidate.id != null">
+    <mat-grid-tile *ngIf="employee.id != null">
       <mat-grid-tile-header style="background: #3f51b5">Activity feed:</mat-grid-tile-header>
       <div class="mat-grid-tile-content">
         <activity-feed-component [dataChangedEmitter]="dataChangedEmitter"
-                                 [targetId]="candidate.id"
+                                 [targetId]="employee.id"
                                  [targetType]="targetType">
         </activity-feed-component>
       </div>
