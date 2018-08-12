@@ -15,6 +15,8 @@ export class EmployeeEditComponent implements OnInit {
   @Input('dataChangedEmitter')
   dataChangedEmitter: EventEmitter<any>;
 
+  grades = ["Trainee", "Junior", "Middle", "Senior"];
+
   constructor(private employeeService: EmployeeService,
               private snackBar: MatSnackBar) {
   }
@@ -33,6 +35,10 @@ export class EmployeeEditComponent implements OnInit {
     this.snackBar.open(message, null, {
       duration: 2000,
     });
+  }
+
+  openProfileLink() {
+    window.open(this.employee.profileLink)
   }
 
 }

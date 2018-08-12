@@ -6,29 +6,96 @@
       <mat-card-content>
         <input type="hidden" name="href" [(ngModel)]="employee.href">
 
-        <mat-form-field appearance="outline">
-          <mat-label>First name:</mat-label>
-          <input matInput placeholder="First name" [(ngModel)]="employee.firstName"
-                 required name="firstName" #firstName>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Last name:</mat-label>
-          <input matInput placeholder="Last name" [(ngModel)]="employee.lastName"
-                 required name="lastName" #lastName>
-        </mat-form-field>
+        <div fxLayout="row" fxLayoutGap="15px">
 
-        <mat-form-field appearance="outline">
-          <mat-label>Email:</mat-label>
-          <input matInput placeholder="Email" [(ngModel)]="employee.email"
-                 required email name="email" #email>
-          <mat-error *ngIf="!email.valid">Not a valid email</mat-error>
-        </mat-form-field>
+          <div fxLayout="column">
+            <span class="header">Common information:</span>
+            <mat-form-field appearance="outline">
+              <mat-label>First name:</mat-label>
+              <input matInput placeholder="First name" [(ngModel)]="employee.firstName"
+                     required name="firstName" #firstName>
+            </mat-form-field>
 
-        <mat-form-field appearance="outline">
-          <mat-label>Position:</mat-label>
-          <input matInput placeholder="Position" [(ngModel)]="employee.position"
-                 required name="position" #position>
-        </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Last name:</mat-label>
+              <input matInput placeholder="Last name" [(ngModel)]="employee.lastName"
+                     required name="lastName" #lastName>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Birthday:</mat-label>
+              <input matInput [matDatepicker]="birthdayDatePicker" placeholder="Birthday" [ngModel]="employee.birthday | date:'yyyy-MM-dd'"
+                     name="birthday" #birthday>
+              <mat-datepicker-toggle matSuffix [for]="birthdayDatePicker"></mat-datepicker-toggle>
+              <mat-datepicker #birthdayDatePicker></mat-datepicker>
+            </mat-form-field>
+          </div>
+
+          <div class="bordered" fxLayout="column">
+            <span class="header">Work information:</span>
+            <mat-form-field appearance="outline">
+              <mat-label>Work start date:</mat-label>
+              <input matInput [matDatepicker]="workStartDateDatePicker" placeholder="Birthday"
+                     [ngModel]="employee.workStartDate | date:'yyyy-MM-dd'"
+                     name="workStartDate" #workStartDate>
+              <mat-datepicker-toggle matSuffix [for]="workStartDateDatePicker"></mat-datepicker-toggle>
+              <mat-datepicker #workStartDateDatePicker></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Salary:</mat-label>
+              <input matInput placeholder="Salary" [(ngModel)]="employee.salary"
+                     type="number" name="salary" #salary>
+              <span matPrefix>$&nbsp;</span>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Position:</mat-label>
+              <input matInput placeholder="Position" [(ngModel)]="employee.position"
+                     required name="position" #position>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Grade:</mat-label>
+              <mat-select placeholder="Grade" #grade [(ngModel)]="employee.grade" name="grade">
+                <mat-option *ngFor="let grade of grades" [value]="grade">
+                  {{grade}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div fxLayout="column">
+            <span class="header">Contacts:</span>
+            <mat-form-field appearance="outline">
+              <mat-label>Email:</mat-label>
+              <input matInput placeholder="Email" [(ngModel)]="employee.email"
+                     required email name="email" #email>
+              <mat-error *ngIf="!email.valid">Not a valid email</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Mobile:</mat-label>
+              <input matInput placeholder="Mobile" [(ngModel)]="employee.mobile"
+                     type="tel" name="mobile" #mobile pattern="[0-9]+" minlength="10" maxlength="14">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Skype:</mat-label>
+              <input matInput placeholder="Skyp e" [(ngModel)]="employee.skype"
+                     name="skype" #skype pattern="[a-zA-Z][a-zA-Z0-9\.,\-_]{5,31}">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Profile link:</mat-label>
+              <input matInput placeholder="Profile link" [(ngModel)]="employee.profileLink"
+                     type="url" name="profileLink" #profileLink
+                     pattern="(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9]\.[^\s]{2,})">
+              <mat-icon matSuffix *ngIf="employee.profileLink" (click)="openProfileLink()">link</mat-icon>
+            </mat-form-field>
+          </div>
+
+        </div>
 
       </mat-card-content>
 

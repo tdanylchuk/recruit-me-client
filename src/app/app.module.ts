@@ -40,6 +40,7 @@ import {EmployeeListComponent} from "./components/employee-dashboard/employee-li
 import {
   MatButtonModule,
   MatCardModule,
+  MatDatepickerModule,
   MatDialogModule,
   MatExpansionModule,
   MatGridListModule,
@@ -47,6 +48,8 @@ import {
   MatInputModule,
   MatListModule,
   MatMenuModule,
+  MatNativeDateModule,
+  MatSelectModule,
   MatSidenavModule,
   MatSnackBarModule,
   MatTableModule,
@@ -100,7 +103,10 @@ import {EmployeeService} from "./shared/employee/employee.service";
     ReactiveFormsModule,
     FlexLayoutModule,
     MatDialogModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [
     CandidatesService,
