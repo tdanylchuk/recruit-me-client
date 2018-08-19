@@ -22,17 +22,23 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.authorizationService.isAuthenticated()) {
-      this.router.navigateByUrl("/home");
-    }
+    this.redirectIfAuthenticated();
   }
 
   login() {
+    this.redirectIfAuthenticated();
+
     this.authorizationService.authenticate(this.credentials, () => {
       this.router.navigateByUrl(this.authorizationService.redirectUrl);
     }, error => {
       this.errorMessage = 'Invalid credentials';
     });
+  }
+
+  private redirectIfAuthenticated() {
+    if (this.authorizationService.isAuthenticated()) {
+      this.router.navigateByUrl("/home");
+    }
   }
 
   resetErrorMessage() {
