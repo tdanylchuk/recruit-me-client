@@ -23,6 +23,12 @@
             </mat-form-field>
 
             <mat-form-field appearance="outline">
+              <mat-label>Original name:</mat-label>
+              <input matInput placeholder="Original name" [(ngModel)]="employee.originalName"
+                     name="originalName" #originalName>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
               <mat-label>Birthday:</mat-label>
               <input matInput [matDatepicker]="birthdayDatePicker" placeholder="Birthday" [ngModel]="employee.birthday | date:'yyyy-MM-dd'"
                      name="birthday" #birthday>

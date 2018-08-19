@@ -1,0 +1,27 @@
+<mat-tab-group>
+  <mat-tab *ngFor="let category of compensationCategories" [label]="category.category">
+
+    <ng-template matTabContent>
+      <mat-table #table [dataSource]="getCompensationDS(category.category)" class="compensation-table">
+
+        <ng-container matColumnDef="amount">
+          <mat-header-cell *matHeaderCellDef>AMOUNT</mat-header-cell>
+          <mat-cell *matCellDef="let compensation">{{compensation.amount}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="description">
+          <mat-header-cell *matHeaderCellDef>DESCRIPTION</mat-header-cell>
+          <mat-cell *matCellDef="let compensation">{{compensation.description}}</mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="['amount','description']"></mat-header-row>
+        <mat-row *matRowDef="let rowData; columns: ['amount','description']"></mat-row>
+
+      </mat-table>
+
+      <p class="summary">
+        Total Compensations: {{getTotalCompensations(category.category)}}. Limit: {{getCategoryLimit(category.category)}}
+      </p>
+    </ng-template>
+  </mat-tab>
+</mat-tab-group>

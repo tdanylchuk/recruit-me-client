@@ -12,7 +12,7 @@
       <mat-grid-tile-header style="background: #3f51b5"> Edit data:</mat-grid-tile-header>
       <div class="mat-grid-tile-content">
         <employee-edit-component [employee]="employee"
-                                  [dataChangedEmitter]="dataChangedEmitter">
+                                 [dataChangedEmitter]="dataChangedEmitter">
         </employee-edit-component>
       </div>
     </mat-grid-tile>
@@ -37,6 +37,12 @@
       </div>
     </mat-grid-tile>
 
+    <mat-grid-tile *ngIf="employee.id != null">
+      <mat-grid-tile-header style="background: #3f51b5">Compensations:</mat-grid-tile-header>
+      <div class="mat-grid-tile-content">
+        <compensation-component [employee]="employee"></compensation-component>
+      </div>
+    </mat-grid-tile>
   </mat-grid-list>
 
 </div>

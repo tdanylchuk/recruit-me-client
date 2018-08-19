@@ -53,10 +53,13 @@ import {
   MatSidenavModule,
   MatSnackBarModule,
   MatTableModule,
+  MatTabsModule,
   MatToolbarModule,
   MatTooltipModule
 } from "@angular/material";
 import {EmployeeService} from "./shared/employee/employee.service";
+import {CompensationComponent} from "./components/employee/compensation/compensation.component";
+import {CompensationService} from "./shared/compensation/compensation.service";
 
 @NgModule({
   declarations: [
@@ -79,7 +82,8 @@ import {EmployeeService} from "./shared/employee/employee.service";
     EmployeeAddComponent,
     EmployeeEditComponent,
     EmployeeDashboardComponent,
-    EmployeeListComponent
+    EmployeeListComponent,
+    CompensationComponent
   ],
   imports: [
     BrowserModule,
@@ -106,7 +110,8 @@ import {EmployeeService} from "./shared/employee/employee.service";
     MatExpansionModule,
     MatSelectModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatTabsModule
   ],
   providers: [
     CandidatesService,
@@ -116,6 +121,7 @@ import {EmployeeService} from "./shared/employee/employee.service";
     ActivityService,
     UserService,
     EmployeeService,
+    CompensationService,
     {provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
