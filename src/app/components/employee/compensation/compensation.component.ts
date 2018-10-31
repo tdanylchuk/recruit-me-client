@@ -1,6 +1,5 @@
 import {Component, Input} from '@angular/core';
 import {CompensationService} from "../../../shared/compensation/compensation.service";
-import {MatTableDataSource} from "@angular/material";
 
 @Component({
   selector: 'compensation-component',
@@ -11,6 +10,9 @@ export class CompensationComponent {
 
   compensationCategories: any;
   compensationsPerCategory: Map<any, [any]>;
+  compensations: any;
+  limits: any;
+  selectedTable = 'Compensations';
 
   @Input('employee')
   employee: any;
@@ -21,44 +23,51 @@ export class CompensationComponent {
   ngOnInit() {
     this.compensationService.getAllCategories().subscribe(data => {
       this.compensationCategories = data._embedded.compensationCategoryEntities;
-    });
-    this.compensationService.getTargetCompensations(this.employee.id).subscribe(data => {
-      const compensations = data._embedded.compensationEntities;
-      this.compensationsPerCategory = compensations.reduce((map, compensation) => {
-        let list = map[compensation.category];
-        if (list == null) {
-          list = [];
-          map[compensation.category] = list;
-        }
-        map[compensation.category].push(compensation);
-        return map;
-      }, {});
+      this.compensationService.getTargetCompensations(this.employee.id).subscribe(data => {
+        this.compensations = data._embedded.compensationEntities;
+        this.compensationsPerCategory = this.compensations.reduce((map, compensation) => {
+          let list = map[compensation.category];
+          if (list == null) {
+            list = [];
+            map[compensation.category] = list;
+          }
+          map[compensation.category].push(compensation);
+          return map;
+        }, {});
+        this.limits = this.getLimits();
+      });
     });
   }
 
-  getCompensationDS(category): MatTableDataSource<any> {
-    const ds = this.compensationsPerCategory[category] ? this.compensationsPerCategory[category] : [];
-    return new MatTableDataSource(ds);
+  getLimits(): any {
+    return this.compensationCategories.map((categoryObject) => {
+      return {
+        'limit': this.getLimitForCategory(categoryObject),
+        'compensated': this.getTotalCompensations(categoryObject.category),
+        'category': categoryObject.category
+      }
+    });
   }
 
-  getCategoryLimit(category): any {
-    if (this.compensationCategories == null) {
-      return 0;
-    }
-    const foundCategory = this.compensationCategories.find(compensationCategory => compensationCategory.category == category);
-    let foundLimit = foundCategory.gradationLimits.find(limit => limit.grade == this.employee.grade);
+  private getLimitForCategory(categoryObject) {
+    let foundLimit = categoryObject.gradationLimits.find(limit => limit.grade == this.employee.grade);
     if (foundLimit == null) {
-      foundLimit = foundCategory.gradationLimits.find(limit => limit.grade == 'default');
+      foundLimit = categoryObject.gradationLimits.find(limit => limit.grade == 'default');
     }
     return foundLimit.limit;
   }
 
   getTotalCompensations(category) {
-    if (this.compensationsPerCategory == null) {
+    if (!this.compensationsPerCategory || !this.compensationsPerCategory[category]) {
       return 0;
     }
     return this.compensationsPerCategory[category]
       .map(compensation => compensation.amount)
       .reduce((sum, amount) => sum + amount);
   }
+
+  selectTable(table) {
+    this.selectedTable = table;
+  }
+
 }

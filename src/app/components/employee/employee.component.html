@@ -28,6 +28,13 @@
     </mat-grid-tile>
 
     <mat-grid-tile *ngIf="employee.id != null">
+      <mat-grid-tile-header style="background: #3f51b5">Compensations:</mat-grid-tile-header>
+      <div class="mat-grid-tile-content">
+        <compensation-component [employee]="employee"></compensation-component>
+      </div>
+    </mat-grid-tile>
+
+    <mat-grid-tile *ngIf="employee.id != null">
       <mat-grid-tile-header style="background: #3f51b5">Activity feed:</mat-grid-tile-header>
       <div class="mat-grid-tile-content">
         <activity-feed-component [dataChangedEmitter]="dataChangedEmitter"
@@ -37,12 +44,6 @@
       </div>
     </mat-grid-tile>
 
-    <mat-grid-tile *ngIf="employee.id != null">
-      <mat-grid-tile-header style="background: #3f51b5">Compensations:</mat-grid-tile-header>
-      <div class="mat-grid-tile-content">
-        <compensation-component [employee]="employee"></compensation-component>
-      </div>
-    </mat-grid-tile>
   </mat-grid-list>
 
 </div>
