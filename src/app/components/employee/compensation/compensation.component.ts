@@ -12,7 +12,7 @@ export class CompensationComponent {
   compensationsPerCategory: Map<any, [any]>;
   compensations: any;
   limits: any;
-  selectedTable = 'Compensations';
+  selectedTable = 'List';
 
   @Input('employee')
   employee: any;

@@ -1,54 +1,48 @@
-<mat-sidenav-container class="container" autosize>
-  <mat-sidenav mode="side" opened class="sidenav">
-    <mat-nav-list>
-      <a mat-list-item
-         *ngFor="let table of ['Compensations', 'Limits']" (click)="selectTable(table)">{{table}}</a>
-    </mat-nav-list>
-  </mat-sidenav>
+<div class="table-selector">
+  <button mat-flat-button color="{{ selectedTable === table ?'accent':'primary'}}"
+          *ngFor="let table of ['List', 'Limits']" (click)="selectTable(table)">{{table}}
+  </button>
+</div>
 
-  <mat-sidenav-content>
 
-    <mat-table #table *ngIf="selectedTable === 'Compensations'" [dataSource]="compensations" class="content-table">
+<mat-table #table *ngIf="selectedTable === 'List'" [dataSource]="compensations" class="content-table">
 
-      <ng-container matColumnDef="category">
-        <mat-header-cell *matHeaderCellDef>CATEGORY</mat-header-cell>
-        <mat-cell *matCellDef="let compensation">{{compensation.category}}</mat-cell>
-      </ng-container>
+  <ng-container matColumnDef="category">
+    <mat-header-cell *matHeaderCellDef>CATEGORY</mat-header-cell>
+    <mat-cell *matCellDef="let compensation">{{compensation.category}}</mat-cell>
+  </ng-container>
 
-      <ng-container matColumnDef="amount">
-        <mat-header-cell *matHeaderCellDef>AMOUNT</mat-header-cell>
-        <mat-cell *matCellDef="let compensation">{{compensation.amount}}</mat-cell>
-      </ng-container>
+  <ng-container matColumnDef="amount">
+    <mat-header-cell *matHeaderCellDef>AMOUNT</mat-header-cell>
+    <mat-cell *matCellDef="let compensation">{{compensation.amount}}</mat-cell>
+  </ng-container>
 
-      <ng-container matColumnDef="description">
-        <mat-header-cell *matHeaderCellDef>DESCRIPTION</mat-header-cell>
-        <mat-cell *matCellDef="let compensation">{{compensation.description}}</mat-cell>
-      </ng-container>
+  <ng-container matColumnDef="description">
+    <mat-header-cell *matHeaderCellDef>DESCRIPTION</mat-header-cell>
+    <mat-cell *matCellDef="let compensation">{{compensation.description}}</mat-cell>
+  </ng-container>
 
-      <mat-header-row *matHeaderRowDef="['amount','description','category']"></mat-header-row>
-      <mat-row *matRowDef="let rowData; columns: ['amount','description','category']"></mat-row>
-    </mat-table>
+  <mat-header-row *matHeaderRowDef="['amount','description','category']"></mat-header-row>
+  <mat-row *matRowDef="let rowData; columns: ['amount','description','category']"></mat-row>
+</mat-table>
 
-    <mat-table #table *ngIf="selectedTable === 'Limits'" [dataSource]="getLimits()" class="content-table">
-      <ng-container matColumnDef="category">
-        <mat-header-cell *matHeaderCellDef>CATEGORY</mat-header-cell>
-        <mat-cell *matCellDef="let limit">{{limit.category}}</mat-cell>
-      </ng-container>
 
-      <ng-container matColumnDef="limit">
-        <mat-header-cell *matHeaderCellDef>LIMIT</mat-header-cell>
-        <mat-cell *matCellDef="let limit">{{limit.limit}}</mat-cell>
-      </ng-container>
+<mat-table #table *ngIf="selectedTable === 'Limits'" [dataSource]="getLimits()" class="content-table">
+  <ng-container matColumnDef="category">
+    <mat-header-cell *matHeaderCellDef>CATEGORY</mat-header-cell>
+    <mat-cell *matCellDef="let limit">{{limit.category}}</mat-cell>
+  </ng-container>
 
-      <ng-container matColumnDef="compensated">
-        <mat-header-cell *matHeaderCellDef>COMPENSATED</mat-header-cell>
-        <mat-cell *matCellDef="let limit">{{limit.compensated}}</mat-cell>
-      </ng-container>
+  <ng-container matColumnDef="limit">
+    <mat-header-cell *matHeaderCellDef>LIMIT</mat-header-cell>
+    <mat-cell *matCellDef="let limit">{{limit.limit}}</mat-cell>
+  </ng-container>
 
-      <mat-header-row *matHeaderRowDef="['category','limit','compensated']"></mat-header-row>
-      <mat-row *matRowDef="let rowData; columns: ['category','limit','compensated']"></mat-row>
-    </mat-table>
+  <ng-container matColumnDef="compensated">
+    <mat-header-cell *matHeaderCellDef>COMPENSATED</mat-header-cell>
+    <mat-cell *matCellDef="let limit">{{limit.compensated}}</mat-cell>
+  </ng-container>
 
-  </mat-sidenav-content>
-
-</mat-sidenav-container>
+  <mat-header-row *matHeaderRowDef="['category','limit','compensated']"></mat-header-row>
+  <mat-row *matRowDef="let rowData; columns: ['category','limit','compensated']"></mat-row>
+</mat-table>
