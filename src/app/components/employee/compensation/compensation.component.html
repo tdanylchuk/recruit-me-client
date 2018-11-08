@@ -46,3 +46,8 @@
   <mat-header-row *matHeaderRowDef="['category','limit','compensated']"></mat-header-row>
   <mat-row *matRowDef="let rowData; columns: ['category','limit','compensated']"></mat-row>
 </mat-table>
+
+<a mat-raised-button color="accent" class="add-attachment-button" (click)="addCompensation()">
+  <mat-icon>add</mat-icon>
+</a>
+

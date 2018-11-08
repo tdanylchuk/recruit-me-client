@@ -60,6 +60,7 @@ import {
 import {EmployeeService} from "./shared/employee/employee.service";
 import {CompensationComponent} from "./components/employee/compensation/compensation.component";
 import {CompensationService} from "./shared/compensation/compensation.service";
+import {CompensationDialog} from "./components/employee/compensation/compensation-dialog/compensation-dialog";
 
 @NgModule({
   declarations: [
@@ -83,7 +84,8 @@ import {CompensationService} from "./shared/compensation/compensation.service";
     EmployeeEditComponent,
     EmployeeDashboardComponent,
     EmployeeListComponent,
-    CompensationComponent
+    CompensationComponent,
+    CompensationDialog
   ],
   imports: [
     BrowserModule,
@@ -126,7 +128,8 @@ import {CompensationService} from "./shared/compensation/compensation.service";
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [CompensationDialog]
 })
 export class AppModule {
 }

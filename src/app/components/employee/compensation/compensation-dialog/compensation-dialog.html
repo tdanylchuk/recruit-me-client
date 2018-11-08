@@ -1,0 +1,31 @@
+<h1 mat-dialog-title>New compensation:</h1>
+<form #compensationForm="ngForm">
+  <div mat-dialog-content class="dialog-content">
+
+    <mat-form-field appearance="outline">
+      <mat-label>Category:</mat-label>
+      <mat-select placeholder="Category" [(ngModel)]="compensation.category" #category>
+        <mat-option *ngFor="let category of categories" [value]="category.category">
+          {{category.category}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Amount:</mat-label>
+      <input matInput placeholder="Amount" [(ngModel)]="compensation.amount"
+             required type="number" #amount name="number" min="1">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Description:</mat-label>
+      <input matInput placeholder="Description" [(ngModel)]="compensation.description"
+             required type="text" #description name="description">
+    </mat-form-field>
+
+  </div>
+</form>
+<div mat-dialog-actions class="dialog-actions">
+  <button mat-raised-button color="primary" [disabled]="!compensationForm.valid" (click)="onAdd()">Add</button>
+  <button mat-raised-button color="warn" mat-dialog-close>Cancel</button>
+</div>

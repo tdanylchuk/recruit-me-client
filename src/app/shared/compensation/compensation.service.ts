@@ -20,4 +20,8 @@ export class CompensationService {
     return this.http.get(this.COMPENSATIONS_API + "/search/findByEmployeeId", {params: {"employeeId": targetId}});
   }
 
+  saveCompensations(compensation): Observable<any> {
+    return this.http.post(this.COMPENSATIONS_API, compensation)
+  }
+
 }

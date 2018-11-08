@@ -1,5 +1,9 @@
 import {Component, Input} from '@angular/core';
 import {CompensationService} from "../../../shared/compensation/compensation.service";
+import {CompensationDialog} from "./compensation-dialog/compensation-dialog";
+import {MatDialog} from "@angular/material";
+import {flatMap, map} from 'rxjs/operators';
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'compensation-component',
@@ -17,13 +21,24 @@ export class CompensationComponent {
   @Input('employee')
   employee: any;
 
-  constructor(private compensationService: CompensationService) {
+  constructor(private compensationService: CompensationService,
+              private dialog: MatDialog) {
   }
 
   ngOnInit() {
-    this.compensationService.getAllCategories().subscribe(data => {
-      this.compensationCategories = data._embedded.compensationCategoryEntities;
-      this.compensationService.getTargetCompensations(this.employee.id).subscribe(data => {
+    this.compensationService.getAllCategories().pipe(
+      map(data => {
+        this.compensationCategories = data._embedded.compensationCategoryEntities;
+      }),
+      flatMap(data => {
+        return this.loadCompensations();
+      })
+    ).subscribe();
+  }
+
+  loadCompensations(): Observable<any> {
+    return this.compensationService.getTargetCompensations(this.employee.id).pipe(
+      map(data => {
         this.compensations = data._embedded.compensationEntities;
         this.compensationsPerCategory = this.compensations.reduce((map, compensation) => {
           let list = map[compensation.category];
@@ -35,8 +50,7 @@ export class CompensationComponent {
           return map;
         }, {});
         this.limits = this.getLimits();
-      });
-    });
+      }));
   }
 
   getLimits(): any {
@@ -68,6 +82,22 @@ export class CompensationComponent {
 
   selectTable(table) {
     this.selectedTable = table;
+  }
+
+  addCompensation() {
+    const dialogRef = this.dialog.open(CompensationDialog, {
+      data: this.compensationCategories
+    });
+
+    dialogRef.afterClosed().pipe(
+      flatMap(result => {
+        result.employeeId = this.employee.id;
+        return this.compensationService.saveCompensations(result);
+      }),
+      flatMap(result => {
+        return this.loadCompensations();
+      })
+    ).subscribe();
   }
 
 }
